@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-yovxi0$3(e!&ln)!-9=+%@*z_@s(4xdydu7k5oeo0xn$-3v$4!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "goahackerhouse-ecq8.vercel.app",
+]
+
+
 
 
 # Application definition
