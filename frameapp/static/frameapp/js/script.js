@@ -1,65 +1,318 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================================
-       ELEMENTS
-    ================================= */
+```
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-    const photoInput = document.getElementById("photoInput");
-    const profileImage = document.getElementById("profileImage");
+const photoInput = document.getElementById("photoInput");
+const profileImage = document.getElementById("profileImage");
 
-    const zoomSlider = document.getElementById("zoomSlider");
-    const zoomValue = document.getElementById("zoomValue");
+const zoomSlider = document.getElementById("zoomSlider");
+const zoomValue = document.getElementById("zoomValue");
 
-    const nameInput = document.getElementById("nameInput");
-    const personName = document.getElementById("personName");
+const nameInput = document.getElementById("nameInput");
+const posterName = document.getElementById("posterName");
 
-    const qrBox = document.getElementById("qrcode");
+const centerPhoto = document.getElementById("centerPhoto");
+const downloadPoster = document.getElementById("downloadPoster");
+
+const qrContainer = document.getElementById("qrcode");
+const barcode = document.getElementById("barcode");
 
 
-    /* ================================
-       PHOTO UPLOAD
-    ================================= */
+/* =========================================================
+   PHOTO VARIABLES
+========================================================= */
 
-    if (photoInput && profileImage) {
+let zoom = 1;
 
-        photoInput.addEventListener("change", function (event) {
+let positionX = 50;
+let positionY = 50;
 
-            const file = event.target.files[0];
+let uploadedImage = false;
+
+
+/* =========================================================
+   LOAD QR CODE LIBRARY
+========================================================= */
+
+function loadQRCodeLibrary(callback) {
+
+    if (typeof QRCode !== "undefined") {
+        callback();
+        return;
+    }
+
+    const script = document.createElement("script");
+
+    script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+
+    script.onload = function () {
+        callback();
+    };
+
+    script.onerror = function () {
+        console.error("QR Code library failed to load.");
+    };
+
+    document.head.appendChild(script);
+}
+
+
+/* =========================================================
+   GENERATE QR CODE
+========================================================= */
+
+function generateQRCode() {
+
+    if (!qrContainer) {
+        return;
+    }
+
+    qrContainer.innerHTML = "";
+
+    loadQRCodeLibrary(function () {
+
+        new QRCode(qrContainer, {
+
+            text: "https://goahackerhouse-ecq8.vercel.app/",
+
+            width: 105,
+
+            height: 105,
+
+            colorDark: "#034432",
+
+            colorLight: "#ffffff",
+
+            correctLevel: QRCode.CorrectLevel.H
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   GENERATE BARCODE
+========================================================= */
+
+function generateBarcode() {
+
+    if (!barcode) {
+        return;
+    }
+
+    barcode.innerHTML = "";
+
+
+    const namespace =
+        "http://www.w3.org/2000/svg";
+
+
+    const group =
+        document.createElementNS(namespace, "g");
+
+
+    const pattern = [
+
+        2, 1, 2, 2, 1, 2, 3, 1,
+        1, 2, 2, 1, 3, 2, 1, 1,
+        2, 3, 1, 2, 2, 1, 3, 1,
+        2, 2, 1, 3, 1, 2, 1, 2,
+        3, 1, 2, 1, 2, 3, 1, 1,
+        2, 2, 3, 1, 1, 2, 2, 1,
+        3, 2, 1, 2, 1, 3, 2, 1,
+        2, 1, 3, 2, 1, 2, 3, 1
+
+    ];
+
+
+    let x = 5;
+
+    let black = true;
+
+
+    pattern.forEach(function (width) {
+
+        if (black) {
+
+            const rect =
+                document.createElementNS(
+                    namespace,
+                    "rect"
+                );
+
+            rect.setAttribute(
+                "x",
+                x
+            );
+
+            rect.setAttribute(
+                "y",
+                5
+            );
+
+            rect.setAttribute(
+                "width",
+                width * 2
+            );
+
+            rect.setAttribute(
+                "height",
+                50
+            );
+
+            rect.setAttribute(
+                "fill",
+                "#111111"
+            );
+
+            group.appendChild(rect);
+
+        }
+
+        x += width * 2;
+
+        black = !black;
+
+    });
+
+
+    barcode.setAttribute(
+        "viewBox",
+        "0 0 190 60"
+    );
+
+    barcode.setAttribute(
+        "width",
+        "150"
+    );
+
+    barcode.setAttribute(
+        "height",
+        "58"
+    );
+
+    barcode.appendChild(group);
+
+}
+
+
+/* =========================================================
+   UPDATE PHOTO
+========================================================= */
+
+function updatePhoto() {
+
+    if (!profileImage) {
+        return;
+    }
+
+    profileImage.style.transform =
+        `scale(${zoom})`;
+
+    profileImage.style.transformOrigin =
+        `${positionX}% ${positionY}%`;
+
+}
+
+
+/* =========================================================
+   PHOTO UPLOAD
+========================================================= */
+
+if (photoInput) {
+
+    photoInput.addEventListener(
+        "change",
+        function (event) {
+
+            const file =
+                event.target.files[0];
 
             if (!file) {
                 return;
             }
 
+
             if (!file.type.startsWith("image/")) {
-                alert("Please select an image file.");
+
+                alert(
+                    "Please select an image file."
+                );
+
                 return;
+
             }
 
-            const reader = new FileReader();
 
-            reader.onload = function (e) {
+            const reader =
+                new FileReader();
 
-                profileImage.src = e.target.result;
 
-            };
+            reader.onload =
+                function (e) {
+
+                    profileImage.src =
+                        e.target.result;
+
+                    uploadedImage = true;
+
+                    zoom = 1;
+
+                    positionX = 50;
+
+                    positionY = 50;
+
+
+                    if (zoomSlider) {
+
+                        zoomSlider.value =
+                            1;
+
+                    }
+
+
+                    if (zoomValue) {
+
+                        zoomValue.textContent =
+                            "1.00×";
+
+                    }
+
+
+                    updatePhoto();
+
+                };
+
 
             reader.readAsDataURL(file);
-        });
-    }
+
+        }
+    );
+
+}
 
 
-    /* ================================
-       ZOOM
-    ================================= */
+/* =========================================================
+   ZOOM
+========================================================= */
 
-    if (zoomSlider && profileImage) {
+if (zoomSlider) {
 
-        zoomSlider.addEventListener("input", function () {
+    zoomSlider.addEventListener(
+        "input",
+        function () {
 
-            const zoom = parseFloat(this.value);
+            zoom =
+                parseFloat(
+                    zoomSlider.value
+                );
 
-            profileImage.style.transform =
-                "scale(" + zoom + ")";
 
             if (zoomValue) {
 
@@ -68,291 +321,230 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-        });
-    }
+
+            updatePhoto();
+
+        }
+    );
+
+}
 
 
-    /* ================================
-       NAME
-    ================================= */
-
-    if (nameInput && personName) {
-
-        nameInput.addEventListener("input", function () {
-
-            let name = this.value.trim();
-
-            if (name === "") {
-                name = "MONALISA GAAN";
-            }
-
-            personName.textContent =
-                name.toUpperCase();
-
-        });
-    }
-
-
-    /* ================================
-       QR CODE
-    ================================= */
-
-    if (qrBox && typeof QRCode !== "undefined") {
-
-        qrBox.innerHTML = "";
-
-        new QRCode(qrBox, {
-
-            text: "HH-GOA-240",
-
-            width: 120,
-
-            height: 120,
-
-            correctLevel: QRCode.CorrectLevel.H
-
-        });
-
-    }
-
-
-    /* ================================
-       BARCODE
-    ================================= */
-
-    const barcodeElement =
-        document.querySelector(".barcode");
-
-    if (
-        barcodeElement &&
-        typeof JsBarcode !== "undefined"
-    ) {
-
-        barcodeElement.innerHTML = "";
-
-        const svg =
-            document.createElement("svg");
-
-        barcodeElement.appendChild(svg);
-
-        JsBarcode(
-            svg,
-            "HH-GOA-240",
-            {
-                format: "CODE128",
-                width: 2,
-                height: 45,
-                displayValue: false,
-                margin: 0
-            }
-        );
-    }
-
-});
-
-
-/* =====================================
-   AUTO CENTER
-===================================== */
+/* =========================================================
+   AUTO CENTRE
+========================================================= */
 
 function autoCenter() {
 
-    const profileImage =
-        document.getElementById("profileImage");
+    zoom = 1;
 
-    const zoomSlider =
-        document.getElementById("zoomSlider");
+    positionX = 50;
 
-    const zoomValue =
-        document.getElementById("zoomValue");
+    positionY = 50;
 
-    if (!profileImage) {
-        return;
-    }
-
-    profileImage.style.transform =
-        "scale(1)";
-
-    profileImage.style.transformOrigin =
-        "center center";
 
     if (zoomSlider) {
-        zoomSlider.value = "1";
+
+        zoomSlider.value =
+            1;
+
     }
+
 
     if (zoomValue) {
-        zoomValue.textContent = "1.00×";
+
+        zoomValue.textContent =
+            "1.00×";
+
     }
+
+
+    updatePhoto();
+
 }
 
 
-/* =====================================
+if (centerPhoto) {
+
+    centerPhoto.addEventListener(
+        "click",
+        autoCenter
+    );
+
+}
+
+
+/* =========================================================
+   NAME UPDATE
+========================================================= */
+
+if (nameInput) {
+
+    nameInput.addEventListener(
+        "input",
+        function () {
+
+            let name =
+                nameInput.value
+                    .trim()
+                    .toUpperCase();
+
+
+            if (!name) {
+
+                name =
+                    "MONALISA GAAN";
+
+            }
+
+
+            if (posterName) {
+
+                posterName.textContent =
+                    name;
+
+            }
+
+
+            const ticketName =
+                document.getElementById(
+                    "ticketName"
+                );
+
+
+            if (ticketName) {
+
+                ticketName.textContent =
+                    name;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    DOWNLOAD POSTER
-===================================== */
+========================================================= */
 
-async function downloadPoster() {
+if (downloadPoster) {
 
-    const poster =
-        document.getElementById("poster");
+    downloadPoster.addEventListener(
+        "click",
+        async function () {
 
-    if (!poster) {
-
-        alert("Poster not found!");
-
-        return;
-    }
-
-
-    if (typeof html2canvas === "undefined") {
-
-        alert(
-            "Download library is not loaded. Please refresh the page."
-        );
-
-        return;
-    }
+            const poster =
+                document.getElementById(
+                    "poster"
+                );
 
 
-    const button =
-        document.querySelector(
-            'button[onclick="downloadPoster()"]'
-        );
+            if (!poster) {
+
+                alert(
+                    "Poster not found."
+                );
+
+                return;
+
+            }
 
 
-    try {
+            if (
+                typeof html2canvas ===
+                "undefined"
+            ) {
 
-        if (button) {
+                const script =
+                    document.createElement(
+                        "script"
+                    );
 
-            button.disabled = true;
 
-            button.textContent =
-                "GENERATING...";
+                script.src =
+                    "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+
+
+                document.head.appendChild(
+                    script
+                );
+
+
+                await new Promise(
+                    function (resolve) {
+
+                        script.onload =
+                            resolve;
+
+                    }
+                );
+
+            }
+
+
+            try {
+
+                const canvas =
+                    await html2canvas(
+                        poster,
+                        {
+                            scale: 2,
+                            useCORS: true,
+                            backgroundColor: null
+                        }
+                    );
+
+
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                link.download =
+                    "HH-Goa-2026-Frame-In-Goa.png";
+
+
+                link.href =
+                    canvas.toDataURL(
+                        "image/png"
+                    );
+
+
+                link.click();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Poster download failed:",
+                    error
+                );
+
+                alert(
+                    "Unable to download poster. Please try again."
+                );
+
+            }
+
         }
-
-
-        /*
-         * Temporarily remove animations
-         * while generating the image.
-         */
-
-        poster.classList.add(
-            "download-mode"
-        );
-
-
-        /*
-         * Wait for browser rendering.
-         */
-
-        await new Promise(function (resolve) {
-
-            requestAnimationFrame(function () {
-
-                requestAnimationFrame(resolve);
-
-            });
-
-        });
-
-
-        const canvas =
-            await html2canvas(
-                poster,
-                {
-
-                    scale: 3,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
-                    backgroundColor: "#fff2cf",
-
-                    logging: false,
-
-                    imageTimeout: 15000
-
-                }
-            );
-
-
-        /*
-         * Convert poster to PNG
-         */
-
-        const image =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-
-        /*
-         * Create download link
-         */
-
-        const link =
-            document.createElement("a");
-
-
-        link.download =
-            "HH_GOA_2026_MONALISA_GAAN.png";
-
-
-        link.href = image;
-
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-
-
-    } catch (error) {
-
-        console.error(
-            "Poster download error:",
-            error
-        );
-
-        alert(
-            "Unable to download the poster. Please try again."
-        );
-
-
-    } finally {
-
-        poster.classList.remove(
-            "download-mode"
-        );
-
-
-        if (button) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "DOWNLOAD POSTER";
-        }
-
-    }
+    );
 
 }
-document.addEventListener("DOMContentLoaded", function () {
 
-    const qrContainer = document.getElementById("qrcode");
 
-    if (qrContainer && typeof QRCode !== "undefined") {
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
-        qrContainer.innerHTML = "";
+updatePhoto();
 
-        new QRCode(qrContainer, {
-            text: "https://goahackerhouse-ecq8.vercel.app/",
-            width: 108,
-            height: 108,
-            correctLevel: QRCode.CorrectLevel.H
-        });
+generateQRCode();
 
-    }
+generateBarcode();
+```
 
 });
