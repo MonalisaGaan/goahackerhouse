@@ -493,4 +493,3 @@ document.addEventListener("DOMContentLoaded", function () {
     loadMember("monalisa");
 
 });
-
