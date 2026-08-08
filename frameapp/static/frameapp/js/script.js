@@ -144,52 +144,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function generateBarcode(id) {
 
-        barcodeElement.innerHTML = "";
-
-        if (typeof JsBarcode === "undefined") {
-
-            console.error(
-                "JsBarcode library is NOT loaded."
-            );
-
-            return;
-        }
-
-        try {
-
-            JsBarcode(
-                barcodeElement,
-                id,
-                {
-
-                    format: "CODE128",
-
-                    width: 2,
-
-                    height: 48,
-
-                    displayValue: false,
-
-                    margin: 0,
-
-                    background: "#ffffff",
-
-                    lineColor: "#111111"
-
-                }
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Barcode generation failed:",
-                error
-            );
-
-        }
-
+    if (!barcode) {
+        console.error("Barcode element not found.");
+        return;
     }
 
+    if (typeof JsBarcode === "undefined") {
+        console.error("JsBarcode library not loaded.");
+        return;
+    }
+
+    try {
+
+        barcode.innerHTML = "";
+
+        JsBarcode(barcode, id, {
+            format: "CODE128",
+            width: 2,
+            height: 48,
+            displayValue: false,
+            margin: 4,
+            background: "#ffffff",
+            lineColor: "#111111"
+        });
+
+    } catch (error) {
+
+        console.error("Barcode error:", error);
+
+    }
+}
 
     /* =====================================================
        UPDATE POSTER
