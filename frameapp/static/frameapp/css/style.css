@@ -1,7 +1,7 @@
 /* =========================================================
    HH GOA 2026 — FRAME IN GOA
-   CLEAN POSTER CSS
-   ========================================================= */
+   CLEAN CSS
+========================================================= */
 
 :root {
     --green: #034432;
@@ -13,9 +13,10 @@
     --black: #111111;
 }
 
+
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -31,36 +32,20 @@ body {
 body {
     background: #e9e2d5;
     color: var(--green);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", Arial, sans-serif;
 }
+
 
 /* =========================================================
-   MAIN PAGE
-   ========================================================= */
+   HEADER
+========================================================= */
 
-.page {
-    width: 100%;
-    min-height: 100vh;
-    padding: 30px 15px;
-}
-
-.poster {
+.top-info {
     width: 100%;
     max-width: 760px;
     margin: 0 auto;
-    background: var(--cream);
-    overflow: hidden;
-    border: 4px solid var(--green);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-/* =========================================================
-   TOP INFORMATION
-   ========================================================= */
-
-.top-info {
+    padding: 25px 20px 15px;
     text-align: center;
-    padding: 20px 20px 10px;
 }
 
 .top-info .small {
@@ -71,478 +56,121 @@ body {
 
 .top-info h1 {
     margin: 8px 0 0;
-    font-size: clamp(34px, 7vw, 58px);
+    font-family: "Anton", sans-serif;
+    font-size: clamp(38px, 7vw, 60px);
     line-height: 0.95;
-    font-weight: 1000;
 }
 
-/* =========================================================
-   BUILDER / PHOTO SECTION
-   ========================================================= */
-
-.builder-section {
-    position: relative;
-    text-align: center;
-    padding: 25px 20px 20px;
-}
-
-.builder-title {
-    font-size: 28px;
-    font-weight: 1000;
-    margin-bottom: 15px;
-}
-
-/* =========================================================
-   DECORATIVE SIGNS
-   ========================================================= */
-
-.sign {
-    position: absolute;
-    background: var(--pink);
-    color: var(--white);
-    padding: 6px 12px;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    transform: rotate(-4deg);
-}
-
-.sign.build {
-    left: 8%;
-    top: 25px;
-}
-
-.sign.ship {
-    right: 8%;
-    top: 45px;
-    transform: rotate(5deg);
-}
-
-.sign.repeat {
-    right: 12%;
-    bottom: 25px;
-    transform: rotate(-5deg);
-}
-
-/* =========================================================
-   PROFILE PHOTO
-   ========================================================= */
-
-.profile-circle {
-    width: 175px;
-    height: 175px;
-
-    margin: 15px auto;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-
-    position: relative;
-
-    background: var(--white);
-
-    border: 7px solid var(--green);
-
-    flex-shrink: 0;
-}
-
-.profile-inner {
-    width: 100%;
-    height: 100%;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-#profileImage {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    object-position: center center;
-
-    transform: scale(1);
-
-    max-width: none;
-}
-
-/* =========================================================
-   LET'S BUILD
-   ========================================================= */
-
-.lets-build {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.lets-build strong {
-    background: var(--yellow);
-    color: var(--green);
-    padding: 6px 12px;
-    font-size: 18px;
-    font-weight: 1000;
-}
-
-/* =========================================================
-   IDENTITY
-   ========================================================= */
-
-.identity {
-    text-align: center;
-    padding: 10px 20px 25px;
-}
-
-.name-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    font-size: clamp(22px, 5vw, 36px);
-    font-weight: 1000;
-    text-transform: uppercase;
-}
-
-.name-banner span {
-    color: var(--pink);
-}
-
-.role {
-    margin-top: 8px;
-
-    font-size: clamp(14px, 3vw, 20px);
-    font-weight: 900;
-    letter-spacing: 1px;
-
-    color: var(--pink);
-}
-
-/* =========================================================
-   INFORMATION GRID
-   ========================================================= */
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 15px;
-
-    padding: 20px;
-}
-
-.info-column {
-    text-align: center;
-    min-width: 0;
-}
-
-.info-column h3 {
-    margin: 0 0 12px;
-
-    font-size: 13px;
-    font-weight: 1000;
-    letter-spacing: 1px;
-}
-
-.info-column h4 {
-    margin: 0;
-
-    font-size: 19px;
-    line-height: 1.15;
-    font-weight: 1000;
-}
-
-/* =========================================================
-   QR CODE
-   ========================================================= */
-
-.qr-box {
-    width: 130px;
-    min-height: 145px;
-
-    margin: 15px auto 0;
-    padding: 8px;
-
-    background: var(--white);
-
-    border: 4px solid var(--green);
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-}
-
-#qrcode {
-    width: 100px;
-    height: 100px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    background: var(--white);
-
-    overflow: hidden;
-}
-
-#qrcode img,
-#qrcode canvas {
-    display: block;
-
-    width: 100px !important;
-    height: 100px !important;
-
-    max-width: 100px !important;
-    max-height: 100px !important;
-}
-
-.qr-box strong {
-    display: block;
-
-    margin-top: 5px;
-
-    font-size: 9px;
-    line-height: 1;
-
-    color: var(--green);
-}
-
-/* =========================================================
-   BEACH BAG
-   ========================================================= */
-
-.bag-item {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 7px;
-
-    margin: 9px 0;
-
-    font-size: 13px;
-    font-weight: 900;
-}
-
-.bag-item span {
-    font-size: 17px;
-}
-
-.sunset {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.sun {
-    width: 30px;
-    height: 30px;
-
-    margin: auto;
-
-    border-radius: 50%;
-
-    background: var(--yellow);
-}
-
-.waves {
-    margin-top: 4px;
-
-    font-size: 18px;
-    font-weight: 900;
-}
-
-/* =========================================================
-   BUILDER ID
-   ========================================================= */
-
-.builder-label {
-    margin: 15px 0 4px;
-
-    font-size: 10px;
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    color: var(--green);
-}
-
-.builder-id {
-    display: block;
-
-    font-size: 18px;
-    font-weight: 1000;
-
-    color: var(--pink);
-}
-
-/* =========================================================
-   BARCODE
-   ========================================================= */
-
-.barcode {
-    display: block;
-
-    width: 180px !important;
-    height: 58px !important;
-
-    margin: 12px auto 3px;
-
-    padding: 4px;
-
-    background: var(--white);
-
-    border: 2px solid var(--green);
-
-    overflow: hidden;
-}
-
-#barcode {
-    display: block;
-
-    width: 180px !important;
-    height: 58px !important;
-}
-
-.barcode-number,
-#barcodeText {
-    display: block;
-
-    margin-top: 3px;
-
-    text-align: center;
-
-    color: var(--black);
-
-    font-family: monospace;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-}
-
-/* =========================================================
-   ADMIT SECTION
-   ========================================================= */
-
-.admit-section {
-    padding: 15px 20px 25px;
-
-    text-align: center;
-}
-
-.ticket {
-    border-top: 3px dashed var(--green);
-    border-bottom: 3px dashed var(--green);
-
-    padding: 15px 10px;
-}
-
-.ticket strong {
-    display: block;
-
-    font-size: 17px;
-    font-weight: 1000;
-}
-
-.ticket p {
-    margin: 5px 0;
-
-    font-size: 12px;
-    font-weight: 800;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    padding: 20px;
-
-    text-align: center;
-
-    background: var(--green);
-
-    color: var(--cream);
-}
-
-footer strong {
-    font-size: 15px;
-    letter-spacing: 1px;
-}
-
-footer div {
-    margin-top: 5px;
-
-    font-size: 16px;
-}
 
 /* =========================================================
    CONTROLS
-   ========================================================= */
+========================================================= */
 
-.controls,
-.editor-panel {
+.controls {
     width: 100%;
     max-width: 760px;
-
-    margin: 0 auto 20px;
-
-    padding: 20px;
-
+    margin: 0 auto 25px;
+    padding: 25px;
     background: var(--white);
-
-    border: 2px solid var(--green);
+    border: 3px solid var(--green);
 }
 
+.generator-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+.generator-title b {
+    color: var(--pink);
+}
+
+.generator-text {
+    margin: 8px auto 20px;
+    max-width: 600px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.generator-controls {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 15px;
+    align-items: end;
+}
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.upload-card {
+    min-height: 120px;
+    padding: 18px;
+    border: 3px dashed var(--green);
+    background: var(--cream);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.upload-card input {
+    display: none;
+}
+
+.upload-heading {
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.upload-description {
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.upload-action {
+    margin-top: 12px;
+    color: var(--pink);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
 .control {
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
 .control label {
     display: block;
-
     margin-bottom: 6px;
-
+    color: var(--green);
     font-size: 12px;
     font-weight: 900;
-
-    color: var(--green);
 }
 
 .control input[type="text"],
 .control select {
     width: 100%;
-
-    padding: 10px;
-
+    height: 42px;
+    padding: 8px 10px;
     border: 2px solid var(--green);
-
     border-radius: 4px;
-
+    background: white;
+    color: var(--black);
     font-size: 14px;
 }
 
 .zoom-line {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 }
 
@@ -552,115 +180,589 @@ footer div {
 
 #zoomValue {
     min-width: 50px;
-
+    font-size: 12px;
     font-weight: 900;
 }
+
 
 /* =========================================================
    BUTTONS
-   ========================================================= */
+========================================================= */
 
-button,
-.green-button {
+.green-button,
+.pink-button {
     border: 0;
-
-    padding: 11px 18px;
-
-    background: var(--green);
-
-    color: var(--white);
-
+    padding: 12px 18px;
+    cursor: pointer;
     font-size: 12px;
     font-weight: 900;
-
-    cursor: pointer;
 }
 
-button:hover,
-.green-button:hover {
+.green-button {
+    background: var(--green);
+    color: white;
+}
+
+.pink-button {
+    display: block;
+    margin: 20px auto 10px;
+    background: var(--pink);
+    color: white;
+    padding: 14px 25px;
+}
+
+.green-button:hover,
+.pink-button:hover {
     opacity: 0.9;
 }
 
+.privacy {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+}
+
+
 /* =========================================================
-   PHOTO UPLOAD
-   ========================================================= */
+   POSTER
+========================================================= */
 
-input[type="file"] {
-    max-width: 100%;
+.poster-wrapper {
+    width: 100%;
+    padding: 20px 10px 40px;
+}
 
+.poster {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--cream);
+    border: 4px solid var(--green);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.poster-border {
+    position: absolute;
+    inset: 8px;
+    pointer-events: none;
+    border: 2px solid rgba(3, 68, 50, 0.25);
+}
+
+
+/* =========================================================
+   DECORATIONS
+========================================================= */
+
+.goa-stamp,
+.hh-sticker,
+.build-seal,
+.time-sticker {
+    position: absolute;
+    z-index: 5;
+}
+
+.goa-stamp {
+    top: 25px;
+    left: 25px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    line-height: 0.9;
+}
+
+.goa-stamp span {
+    font-size: 20px;
+}
+
+.hh-sticker {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.8;
+    color: var(--pink);
+    font-family: "Anton", sans-serif;
+}
+
+.hh-sticker b {
+    font-size: 20px;
+}
+
+.build-seal {
+    top: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    font-size: 10px;
+}
+
+.build-seal strong {
     font-size: 12px;
 }
 
-/* =========================================================
-   DOWNLOAD BUTTON
-   ========================================================= */
-
-#downloadPoster {
-    display: block;
-
-    margin: 20px auto;
-
-    padding: 13px 24px;
-
-    background: var(--pink);
-
-    color: var(--white);
-
-    border: none;
-
-    font-weight: 1000;
-
-    cursor: pointer;
+.build-seal span {
+    font-size: 18px;
 }
 
+.time-sticker {
+    top: 100px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    color: var(--pink);
+}
+
+.time-sticker strong {
+    font-size: 14px;
+}
+
+.time-sticker span {
+    font-size: 8px;
+}
+
+
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
+   POSTER HEADING
+========================================================= */
+
+.poster-heading {
+    padding: 120px 25px 15px;
+    text-align: center;
+}
+
+.poster-date {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.poster-heading h2 {
+    margin: 8px 0;
+    font-family: "Anton", sans-serif;
+    font-size: clamp(45px, 10vw, 80px);
+    line-height: 0.85;
+    color: var(--green);
+}
+
+.poster-heading h2 span {
+    color: var(--pink);
+}
+
+.poster-location {
+    margin: 8px 0;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.title-stars {
+    color: var(--yellow);
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   PHOTO AREA
+========================================================= */
+
+.photo-area {
+    position: relative;
+    min-height: 270px;
+    padding: 10px 20px 15px;
+    text-align: center;
+}
+
+.profile-circle {
+    width: 145px;
+    height: 145px;
+    margin: 15px auto;
+    overflow: hidden;
+    position: relative;
+    border: 6px solid var(--green);
+    border-radius: 50%;
+    background: white;
+}
+
+.profile-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+}
+
+#profileImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1);
+    transform-origin: center center;
+}
+
+
+/* =========================================================
+   SIGNS
+========================================================= */
+
+.sign {
+    position: absolute;
+    z-index: 3;
+    padding: 7px 13px;
+    background: var(--pink);
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.sign.build {
+    left: 12%;
+    top: 30px;
+    transform: rotate(-5deg);
+}
+
+.sign.ship {
+    right: 12%;
+    top: 50px;
+    transform: rotate(5deg);
+}
+
+.sign.repeat {
+    right: 15%;
+    bottom: 35px;
+    transform: rotate(-4deg);
+}
+
+
+/* =========================================================
+   LET'S BUILD
+========================================================= */
+
+.lets-build {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.lets-build strong {
+    padding: 6px 12px;
+    background: var(--yellow);
+    color: var(--green);
+    font-size: 17px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   IDENTITY
+========================================================= */
+
+.identity {
+    padding: 10px 20px 25px;
+    text-align: center;
+}
+
+.name-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-family: "Anton", sans-serif;
+    font-size: clamp(22px, 5vw, 35px);
+}
+
+.name-banner span {
+    color: var(--pink);
+}
+
+.role {
+    margin-top: 7px;
+    color: var(--pink);
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.info-column {
+    min-width: 0;
+    text-align: center;
+}
+
+.info-column h3 {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.info-column h4 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.15;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+.qr-box {
+    width: 130px;
+    height: 145px;
+    margin: 15px auto 0;
+    padding: 8px;
+    background: white;
+    border: 4px solid var(--green);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#qrcode {
+    width: 105px;
+    height: 105px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+    overflow: hidden;
+}
+
+#qrcode img,
+#qrcode canvas {
+    display: block !important;
+    width: 105px !important;
+    height: 105px !important;
+}
+
+.qr-box strong {
+    margin-top: 5px;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   BEACH
+========================================================= */
+
+.bag-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin: 9px 0;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.bag-item span {
+    font-size: 16px;
+}
+
+.sunset {
+    margin-top: 15px;
+}
+
+.sun {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--yellow);
+}
+
+.waves {
+    margin-top: 3px;
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   BUILDER ID
+========================================================= */
+
+.builder-label {
+    margin: 15px 0 4px;
+    color: var(--green);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.builder-id {
+    display: block;
+    color: var(--pink);
+    font-size: 17px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   BARCODE
+========================================================= */
+
+.barcode-box {
+    width: 190px;
+    margin: 10px auto 0;
+    padding: 6px;
+    background: white;
+    border: 2px solid var(--green);
+}
+
+.barcode {
+    display: block;
+    width: 175px !important;
+    height: 52px !important;
+    margin: 0 auto;
+    background: white;
+}
+
+#barcodeText {
+    display: block;
+    margin-top: 3px;
+    color: var(--black);
+    font-family: monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   ADMIT
+========================================================= */
+
+.admit-section {
+    padding: 15px 20px 25px;
+}
+
+.ticket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+    border-top: 3px dashed var(--green);
+    border-bottom: 3px dashed var(--green);
+    text-align: center;
+}
+
+.ticket strong {
+    display: block;
+    font-size: 15px;
+}
+
+.ticket small {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 18px;
+    background: var(--green);
+    color: var(--cream);
+    text-align: center;
+}
+
+footer strong {
+    font-size: 14px;
+}
+
+footer div {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+.poster img {
+    max-width: none;
+}
+
+.poster svg {
+    max-width: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
-    .page {
-        padding: 10px;
+    .controls {
+        padding: 15px;
     }
 
-    .poster {
-        border-width: 3px;
+    .generator-controls {
+        grid-template-columns: 1fr;
     }
 
     .info-grid {
         grid-template-columns: 1fr;
     }
 
-    .info-column {
-        padding: 10px 0;
+    .poster {
+        border-width: 3px;
     }
 
     .profile-circle {
-        width: 155px;
-        height: 155px;
+        width: 135px;
+        height: 135px;
     }
 
     .sign {
         display: none;
     }
 
-    .name-banner {
-        font-size: 23px;
+    .goa-stamp,
+    .build-seal {
+        display: none;
     }
 
-    .role {
-        font-size: 14px;
+    .poster-heading {
+        padding-top: 85px;
     }
-}
 
-/* =========================================================
-   POSTER DOWNLOAD SAFETY
-   ========================================================= */
-
-.poster img {
-    max-width: 100%;
-}
-
-.poster svg {
-    max-width: 100%;
+    .poster-heading h2 {
+        font-size: 48px;
+    }
 }

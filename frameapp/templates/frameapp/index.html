@@ -1,39 +1,49 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>HH Goa 2026 | Frame in Goa</title>
+    <title>HH Goa 2026 | Frame in Goa</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-<link rel="stylesheet" href="{% static 'frameapp/css/style.css' %}">
-```
-
+    <link
+        rel="stylesheet"
+        href="{% static 'frameapp/css/style.css' %}"
+    >
 </head>
 
 <body>
 
-<div class="page">
-
-```
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="top-info">
-    <div class="small">GOA · INDIA · 28—31 OCT 2026</div>
-    <h1>HH GOA 2026</h1>
+
+    <div class="small">
+        GOA · INDIA · 28—31 OCT 2026
+    </div>
+
+    <h1>
+        HH GOA 2026
+    </h1>
+
 </header>
 
 
-<!-- ================= CONTROLS ================= -->
+<!-- =====================================================
+     CONTROLS
+===================================================== -->
 
 <section class="controls">
 
@@ -48,6 +58,8 @@
 
 
     <div class="generator-controls">
+
+        <!-- PHOTO -->
 
         <label class="upload-card">
 
@@ -66,10 +78,13 @@
             <input
                 type="file"
                 id="photoInput"
-                accept="image/*">
+                accept="image/*"
+            >
 
         </label>
 
+
+        <!-- ZOOM -->
 
         <div class="control">
 
@@ -85,7 +100,8 @@
                     min="1"
                     max="2"
                     step="0.01"
-                    value="1">
+                    value="1"
+                >
 
                 <span id="zoomValue">
                     1.00×
@@ -95,6 +111,8 @@
 
         </div>
 
+
+        <!-- NAME -->
 
         <div class="control">
 
@@ -106,10 +124,13 @@
                 type="text"
                 id="nameInput"
                 maxlength="30"
-                value="MONALISA GAAN">
+                value="MONALISA GAAN"
+            >
 
         </div>
 
+
+        <!-- BUILDER -->
 
         <div class="control">
 
@@ -136,26 +157,29 @@
         </div>
 
 
+        <!-- CENTRE -->
+
         <button
             type="button"
             id="centerPhoto"
-            class="green-button">
-
+            class="green-button"
+        >
             ✦ AUTO-CENTRE PHOTO
-
         </button>
 
     </div>
 
 
+    <!-- DOWNLOAD -->
+
     <button
         type="button"
         id="downloadPoster"
-        class="pink-button">
-
+        class="pink-button"
+    >
         DOWNLOAD POSTER
-
     </button>
+
 
     <p class="privacy">
         Everything renders on your device.
@@ -165,7 +189,9 @@
 </section>
 
 
-<!-- ================= POSTER ================= -->
+<!-- =====================================================
+     POSTER
+===================================================== -->
 
 <div class="poster-wrapper">
 
@@ -174,39 +200,55 @@
         <div class="poster-border"></div>
 
 
-        <!-- TOP LEFT -->
+        <!-- GOA STAMP -->
 
         <div class="goa-stamp">
+
             <strong>GOA</strong>
             <strong>INDIA</strong>
+
             <span>🌴</span>
+
         </div>
 
 
-        <!-- TOP CENTER -->
+        <!-- HH STICKER -->
 
         <div class="hh-sticker">
+
             <small>✦</small>
             <b>HH</b>
             <b>GOA</b>
             <b>2026</b>
+
         </div>
 
 
-        <!-- TOP RIGHT -->
+        <!-- BUILD SEAL -->
 
         <div class="build-seal">
+
             <strong>BUILD IN GOA</strong>
+
             <span>🌴</span>
-            <small>SHIP FROM PARADISE</small>
+
+            <small>
+                SHIP FROM PARADISE
+            </small>
+
         </div>
 
 
         <!-- TIME -->
 
         <div class="time-sticker">
+
             <strong>2:47 PM</strong>
-            <span>STUDIO</span>
+
+            <span>
+                STUDIO
+            </span>
+
         </div>
 
 
@@ -256,6 +298,8 @@
             </div>
 
 
+            <!-- PROFILE -->
+
             <div class="profile-circle">
 
                 <div class="profile-inner">
@@ -263,7 +307,8 @@
                     <img
                         id="profileImage"
                         src="{% static 'frameapp/images/Profile.jpeg' %}"
-                        alt="Builder photo">
+                        alt="Builder photo"
+                    >
 
                 </div>
 
@@ -280,7 +325,7 @@
         </section>
 
 
-        <!-- NAME -->
+        <!-- IDENTITY -->
 
         <section class="identity">
 
@@ -296,13 +341,11 @@
 
             </div>
 
-
             <div
                 class="role"
-                id="personRole">
-
+                id="personRole"
+            >
                 ⚡ FRONTEND DEVELOPER ⚡
-
             </div>
 
         </section>
@@ -327,7 +370,7 @@
                 </h4>
 
 
-                <!-- QR -->
+                <!-- QR CODE -->
 
                 <div class="qr-box">
 
@@ -350,7 +393,6 @@
                     ✦ BEACH BAG ✦
                 </h3>
 
-
                 <div class="bag-item">
                     <span>🥥</span>
                     COCONUT
@@ -365,7 +407,6 @@
                     <span>🎧</span>
                     LO-FI BEATS
                 </div>
-
 
                 <div class="sunset">
 
@@ -400,23 +441,26 @@
 
                 <strong
                     class="builder-id"
-                    id="builderId">
-
+                    id="builderId"
+                >
                     HH-GOA-240
-
                 </strong>
 
 
                 <!-- BARCODE -->
 
-                <svg
-                    id="barcode"
-                    class="barcode">
-                </svg>
+                <div class="barcode-box">
 
-                <small id="barcodeText">
-                    HH-GOA-240
-                </small>
+                    <svg
+                        id="barcode"
+                        class="barcode"
+                    ></svg>
+
+                    <small id="barcodeText">
+                        HH-GOA-240
+                    </small>
+
+                </div>
 
             </div>
 
@@ -455,25 +499,37 @@
 
         <!-- FOOTER -->
 
-           <footer>
+        <footer>
 
-        <strong>
-            ★ #FRAMEINGOA ★
-        </strong>
+            <strong>
+                ★ #FRAMEINGOA ★
+            </strong>
 
-        <div>
-            ≋ ≋ ≋ ≋ ≋ ≋
-        </div>
+            <div>
+                ≋ ≋ ≋ ≋ ≋ ≋
+            </div>
 
-    </footer>
+        </footer>
+
+    </div>
 
 </div>
 
 
+<!-- =====================================================
+     JAVASCRIPT LIBRARIES
+     IMPORTANT: ONLY ONE OF EACH
+===================================================== -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+<!-- YOUR JS -->
+
 <script src="{% static 'frameapp/js/script.js' %}"></script>
 
 </body>
