@@ -564,12 +564,3 @@ input[type="range"] {
         font-size: 20px;
     }
 }
-.role-select {
-    border: 2px solid var(--green);
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: 700;
-    background: white;
-    color: var(--black);
-    cursor: pointer;
-}

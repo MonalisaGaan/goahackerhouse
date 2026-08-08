@@ -12,7 +12,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>HH Goa 2026 | Frame in Goa</title>
+<title>Frame in Goa | HH Goa 2026</title>
 
 <link rel="preconnect"
       href="https://fonts.googleapis.com">
@@ -36,36 +36,41 @@
 
 ```
 <!-- =================================================
-     TOP HEADER
+     HEADER
 ================================================== -->
 
-<header class="top-info">
+<div class="top-info">
 
     <div class="small">
-        GOA · INDIA · 28—31 OCT 2026
+        GOA, INDIA · 28—31 OCT 2026
     </div>
 
     <h1>
         HH GOA 2026
     </h1>
 
-</header>
+</div>
 
 
 
 <!-- =================================================
-     GENERATOR CONTROLS
+     CONTROLS
 ================================================== -->
 
-<section class="controls">
+<div class="controls">
 
     <h2>
-        ✦ FRAME IN <span>गोवा</span>
+        ✦ FRAME IN गोवा
     </h2>
 
     <p class="subtitle">
-        Drop a photo. Get your HH Goa 2026 PFP or Builder ID.
-        Post it with <strong>#FrameInGoa</strong>.
+
+        Drop a photo. Get your HH Goa 2026 PFP
+        or Builder ID.
+
+        Post it with
+        <strong>#FrameInGoa</strong>.
+
     </p>
 
 
@@ -133,12 +138,46 @@
 
 
 
-        <!-- AUTO CENTER -->
+        <!-- ROLE -->
+
+        <div class="name-box">
+
+            <strong>
+                BUILDER TYPE
+            </strong>
+
+            <select
+                id="roleInput"
+                class="role-select">
+
+                <option value="FRONTEND DEVELOPER">
+                    FRONTEND DEVELOPER
+                </option>
+
+                <option value="BACKEND DEVELOPER">
+                    BACKEND DEVELOPER
+                </option>
+
+                <option value="BLOCKCHAIN DEVELOPER">
+                    BLOCKCHAIN DEVELOPER
+                </option>
+
+                <option value="AI / ML DEVELOPER">
+                    AI / ML DEVELOPER
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- AUTO CENTRE -->
 
         <button
             type="button"
             class="btn green"
-            id="centerPhoto">
+            onclick="autoCenter()">
 
             ✦ AUTO-CENTRE PHOTO
 
@@ -151,7 +190,8 @@
         <button
             type="button"
             class="btn"
-            id="downloadPoster">
+            id="downloadPoster"
+            onclick="downloadPoster()">
 
             DOWNLOAD POSTER
 
@@ -167,7 +207,7 @@
 
     </div>
 
-</section>
+</div>
 
 
 
@@ -177,73 +217,71 @@
 
 <div class="poster-wrapper">
 
-    <div class="poster" id="poster">
+
+    <div class="poster"
+         id="poster">
 
 
         <div class="poster-content">
 
 
-            <!-- INNER BORDER -->
-
-            <div class="poster-border"></div>
-
-
-
             <!-- =================================================
-                 TOP LEFT
+                 HH BADGE
             ================================================== -->
 
-            <div class="goa-stamp">
+            <div class="hh-badge">
 
-                <strong>GOA</strong>
-                <strong>INDIA</strong>
+                HH
 
-                <span>🌴</span>
+                <span>
+                    GOA
+                </span>
+
+                2026
 
             </div>
 
 
 
             <!-- =================================================
-                 HH STICKER
+                 DATE
             ================================================== -->
 
-            <div class="hh-sticker">
+            <div class="date">
 
-                <small>✦</small>
-
-                <b>HH</b>
-
-                <b>GOA</b>
-
-                <b>2026</b>
+                28 — 31 OCT 2026
 
             </div>
 
 
 
             <!-- =================================================
-                 TOP RIGHT
+                 TITLE
             ================================================== -->
 
-            <div class="build-seal">
+            <div class="poster-title">
 
-                <strong>
-                    BUILD IN GOA
-                </strong>
+                HACKER
 
-                <span>🌴</span>
+                <span class="goa">
+                    गोवा
+                </span>
 
-                <small>
-                    SHIP FROM PARADISE
-                </small>
+                HOUSE
+
+            </div>
+
+
+            <div class="location">
+
+                GOA · INDIA · 28—31 OCT 2026
 
             </div>
 
 
 
             <!-- =================================================
-                 2:47 STUDIO
+                 STUDIO
             ================================================== -->
 
             <div class="studio">
@@ -259,371 +297,251 @@
 
 
             <!-- =================================================
-                 POSTER TITLE
+                 DECORATIONS
             ================================================== -->
 
-            <section class="poster-heading">
+            <div class="palm left">
+                🌴
+            </div>
 
-                <p class="poster-date">
-                    28 — 31 OCT 2026
-                </p>
+            <div class="palm right">
+                🌴
+            </div>
 
-                <h2>
-                    HACKER
-                    <span>गोवा</span>
-                    HOUSE
-                </h2>
 
-                <p class="poster-location">
-                    GOA · INDIA · 28—31 OCT 2026
-                </p>
+            <div class="build-sticker">
 
-                <div class="title-stars">
-                    ✦ ✦ ✦
-                </div>
+                LET'S<br>
+                BUILD!
 
-            </section>
+            </div>
 
 
 
             <!-- =================================================
-                 PHOTO AREA
+                 PHOTO
             ================================================== -->
 
-            <section class="photo-area">
+            <div class="photo-area">
 
 
-                <!-- LEFT SIGNS -->
-
-                <div class="sign-stack">
-
-                    <div class="sign build">
-                        BUILD
-                    </div>
-
-                    <div class="sign ship">
-                        SHIP
-                    </div>
-
-                    <div class="sign repeat">
-                        REPEAT
-                    </div>
-
-                </div>
+                <div class="photo-ring">
 
 
-
-                <!-- PHOTO -->
-
-                <div class="profile-circle">
-
-                    <div class="profile-inner">
+                    <div class="photo-inner">
 
                         <img
                             id="profileImage"
                             src="{% static 'frameapp/images/Profile.jpeg' %}"
-                            alt="Monalisa Gaan">
+                            alt="Builder Profile">
 
                     </div>
 
-                </div>
-
-
-
-                <!-- RIGHT STICKER -->
-
-                <div class="lets-build">
-
-                    <strong>
-                        LET'S
-                    </strong>
-
-                    <strong>
-                        BUILD!
-                    </strong>
 
                 </div>
 
-            </section>
+
+            </div>
 
 
 
             <!-- =================================================
-                 CURRENT PROFILE
+                 NAME
             ================================================== -->
 
-            <section class="identity">
+            <div
+                class="person-name"
+                id="personName">
 
-                <div class="name-banner">
+                MONALISA GAAN
 
-                    <span>✦</span>
-
-                    <strong id="posterName">
-                        MONALISA GAAN
-                    </strong>
-
-                    <span>✦</span>
-
-                </div>
-
-
-                <div class="role-banner">
-
-                    ⚡ FRONTEND DEVELOPER ⚡
-
-                </div>
-
-            </section>
+            </div>
 
 
 
             <!-- =================================================
-                 THREE INFORMATION COLUMNS
+                 ROLE
             ================================================== -->
 
-            <section class="info-grid">
+            <div
+                class="role"
+                id="personRole">
+
+                ⚡ FRONTEND DEVELOPER ⚡
+
+            </div>
 
 
-                <!-- =================================================
-                     BUILDER CLASS + QR
-                ================================================== -->
 
-                <div class="info-column">
+            <!-- =================================================
+                 INFORMATION
+            ================================================== -->
 
-                    <h3>
+            <div class="info-grid">
+
+
+                <!-- BUILDER CLASS -->
+
+                <div class="info-box">
+
+
+                    <div class="info-label">
+
                         ✦ BUILDER CLASS ✦
-                    </h3>
 
-                    <h4>
+                    </div>
+
+
+                    <div class="info-value">
+
                         TERMINAL<br>
                         WIZARD
-                    </h4>
-
-
-                    <div class="qr-box">
-
-                        <div id="qrcode"></div>
-
-                        <strong>
-                            SCAN TO BUILD
-                        </strong>
 
                     </div>
+
+
+                    <div
+                        class="qr-box"
+                        id="qrcode">
+
+                    </div>
+
+
+                    <div class="info-label">
+
+                        SCAN TO BUILD
+
+                    </div>
+
 
                 </div>
 
 
 
-                <!-- =================================================
-                     BEACH BAG
-                ================================================== -->
+                <!-- BEACH BAG -->
 
-                <div class="info-column">
+                <div class="info-box">
 
-                    <h3>
+
+                    <div class="info-label">
+
                         ✦ BEACH BAG ✦
-                    </h3>
-
-
-                    <div class="bag-item">
-
-                        <span>🥥</span>
-                        COCONUT
 
                     </div>
 
 
-                    <div class="bag-item">
+                    <div class="beach-items">
 
-                        <span>&lt;/&gt;</span>
-                        VS CODE
+                        <div>
+                            🥥 COCONUT
+                        </div>
 
-                    </div>
+                        <div>
+                            &lt;/&gt; VS CODE
+                        </div>
 
-
-                    <div class="bag-item">
-
-                        <span>🎧</span>
-                        LO-FI BEATS
-
-                    </div>
-
-
-                    <div class="sunset">
-
-                        <div class="sun"></div>
-
-                        <div class="waves">
-                            ≋ ≋ ≋ ≋
+                        <div>
+                            🎧 LO-FI BEATS
                         </div>
 
                     </div>
 
+
                 </div>
 
 
 
-                <!-- =================================================
-                     CURRENTLY SHIPPING + BARCODE
-                ================================================== -->
+                <!-- CURRENTLY SHIPPING -->
 
-                <div class="info-column">
+                <div class="info-box">
 
-                    <h3>
+
+                    <div class="info-label">
+
                         ✦ CURRENTLY SHIPPING ✦
-                    </h3>
 
-                    <h4>
-                        HH GOA<br>
-                        TEAM PROJECT
-                    </h4>
+                    </div>
 
 
-                    <p class="builder-label">
+                    <div class="info-value">
+
+                        ID CARD<br>
+                        GENERATOR
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="info-label">
+
                         BUILDER ID
-                    </p>
 
-                    <strong class="builder-id">
+                    </div>
+
+
+                    <div class="info-value">
+
                         HH-GOA-240
-                    </strong>
+
+                    </div>
 
 
                     <!-- BARCODE -->
 
-                    <svg
-                        id="barcode">
-                    </svg>
+                    <div class="barcode"></div>
+
 
                 </div>
 
-            </section>
+
+            </div>
 
 
 
             <!-- =================================================
-                 TEAM ADMIT SECTION
+                 ADMIT ONE
             ================================================== -->
 
-            <section class="admit-section">
+            <div class="admit">
 
+                ADMIT 
 
-                <div class="ticket">
+                <small>
 
-                    <span>
-                        🌴
+                    BUILDER ·
+                    <span id="ticketName">
+                        MONALISA GAAN
                     </span>
 
+                </small>
 
-                    <div>
-
-                        <strong>
-                            ADMIT ONE BUILDER TEAM
-                        </strong>
-
-                        <small>
-                            HH GOA 2026
-                        </small>
-
-                    </div>
-
-
-                    <span>
-                        ★
-                    </span>
-
-                </div>
-
-
-
-                <!-- TEAM MEMBERS -->
-
-                <div class="team-members">
-
-
-                    <!-- MONALISA -->
-
-                    <div class="team-member">
-
-                        <strong>
-                            MONALISA GAAN
-                        </strong>
-
-                        <span>
-                            FRONTEND DEVELOPER
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- NIKHIL -->
-
-                    <div class="team-member">
-
-                        <strong>
-                            NIKHIL ARYAN
-                        </strong>
-
-                        <span>
-                            BLOCKCHAIN DEVELOPER
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- DEPESH -->
-
-                    <div class="team-member">
-
-                        <strong>
-                            DEPESH SINGH
-                        </strong>
-
-                        <span>
-                            BACKEND DEVELOPER
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- TEAM DOMAIN -->
-
-                    <div class="team-member">
-
-                        <strong>
-                            AI / ML
-                        </strong>
-
-                        <span>
-                            BUILDER DOMAIN
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-            </section>
+            </div>
 
 
 
             <!-- =================================================
-                 FOOTER
+                 HASHTAG
             ================================================== -->
 
-            <footer>
+            <div class="hashtag">
 
-                <strong>
-                    ★ #FRAMEINGOA ★
-                </strong>
+                ★ #FRAMEINGOA ★
 
-                <div>
-                    ≋ ≋ ≋ ≋ ≋ ≋
-                </div>
+            </div>
 
-            </footer>
+
+
+            <!-- =================================================
+                 WAVES
+            ================================================== -->
+
+            <div class="waves">
+
+                ≋ ≋ ≋ ≋ ≋ ≋
+
+            </div>
 
 
         </div>
@@ -640,6 +558,55 @@
 ================================================== -->
 
 <script src="{% static 'frameapp/js/script.js' %}"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const nameInput = document.getElementById("nameInput");
+    const roleInput = document.getElementById("roleInput");
+
+    const personName = document.getElementById("personName");
+    const ticketName = document.getElementById("ticketName");
+    const personRole = document.getElementById("personRole");
+
+    function updateBuilder() {
+
+        const name =
+            nameInput.value.trim() || "BUILDER";
+
+        const role =
+            roleInput.value;
+
+        personName.textContent =
+            name.toUpperCase();
+
+        ticketName.textContent =
+            name.toUpperCase();
+
+        personRole.textContent =
+            "⚡ " + role + " ⚡";
+
+    }
+
+
+    nameInput.addEventListener(
+        "input",
+        updateBuilder
+    );
+
+
+    roleInput.addEventListener(
+        "change",
+        updateBuilder
+    );
+
+
+    updateBuilder();
+
+});
+
+</script>
 
 </body>
 
