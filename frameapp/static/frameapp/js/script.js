@@ -35,40 +35,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       ELEMENTS
+       GET ELEMENTS
     ========================================== */
 
-    const memberSelect = document.getElementById("memberSelect");
+    const memberSelect =
+        document.getElementById("memberSelect");
 
-    const photoInput = document.getElementById("photoInput");
+    const photoInput =
+        document.getElementById("photoInput");
 
-    const profileImage = document.getElementById("profileImage");
+    const profileImage =
+        document.getElementById("profileImage");
 
-    const zoomSlider = document.getElementById("zoomSlider");
+    const zoomSlider =
+        document.getElementById("zoomSlider");
 
-    const zoomValue = document.getElementById("zoomValue");
+    const zoomValue =
+        document.getElementById("zoomValue");
 
-    const nameInput = document.getElementById("nameInput");
+    const nameInput =
+        document.getElementById("nameInput");
 
-    const posterName = document.getElementById("posterName");
+    const posterName =
+        document.getElementById("posterName");
 
-    const personRole = document.getElementById("personRole");
+    const personRole =
+        document.getElementById("personRole");
 
-    const builderClass = document.getElementById("builderClass");
+    const builderClass =
+        document.getElementById("builderClass");
 
-    const builderId = document.getElementById("builderId");
+    const builderId =
+        document.getElementById("builderId");
 
-    const qrcode = document.getElementById("qrcode");
+    const qrCode =
+        document.getElementById("qrcode");
 
-    const barcode = document.getElementById("barcode");
+    const barcode =
+        document.getElementById("barcode");
 
-    const centerPhoto = document.getElementById("centerPhoto");
+    const centerPhoto =
+        document.getElementById("centerPhoto");
 
-    const downloadPoster = document.getElementById("downloadPoster");
+    const downloadPoster =
+        document.getElementById("downloadPoster");
 
 
     /* ==========================================
-       PHOTO POSITION
+       PHOTO SETTINGS
     ========================================== */
 
     let zoom = 1;
@@ -84,7 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updatePhoto() {
 
-        if (!profileImage) return;
+        if (!profileImage) {
+            return;
+        }
 
         profileImage.style.transform =
             `scale(${zoom})`;
@@ -96,24 +112,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       UPDATE QR CODE
+       QR CODE
     ========================================== */
 
     function updateQRCode(member) {
 
-        if (!qrcode) return;
+        if (!qrCode) {
+            return;
+        }
 
-        qrcode.innerHTML = "";
+        qrCode.innerHTML = "";
+
 
         if (typeof QRCode === "undefined") {
 
-            qrcode.innerHTML =
-                "<span>QR unavailable</span>";
+            qrCode.textContent =
+                "QR";
 
             return;
         }
 
-        new QRCode(qrcode, {
+
+        new QRCode(qrCode, {
 
             text:
                 `${member.name} | ${member.role} | ${member.builderId}`,
@@ -131,58 +151,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       CREATE BARCODE
+       BARCODE
     ========================================== */
 
     function updateBarcode(member) {
 
-        if (!barcode) return;
+        if (!barcode) {
+            return;
+        }
 
         barcode.innerHTML = "";
 
-        const value =
-            member.builderId.replace(/[^0-9]/g, "");
 
-        const bars = document.createElement("div");
+        const number =
+            member.builderId
+                .replace(/\D/g, "");
 
-        bars.className = "barcode-lines";
 
-        for (let i = 0; i < value.length; i++) {
+        const barcodeLines =
+            document.createElement("div");
+
+        barcodeLines.className =
+            "barcode-lines";
+
+
+        for (let i = 0; i < number.length; i++) {
 
             const digit =
-                parseInt(value[i], 10);
+                Number(number[i]);
 
-            const repetitions =
-                digit + 2;
 
-            for (let j = 0; j < repetitions; j++) {
+            const total =
+                digit + 3;
+
+
+            for (let j = 0; j < total; j++) {
 
                 const line =
                     document.createElement("span");
 
-                line.className =
-                    (j % 2 === 0)
-                        ? "bar"
-                        : "space";
 
-                bars.appendChild(line);
+                if (j % 2 === 0) {
+
+                    line.className =
+                        "bar";
+
+                } else {
+
+                    line.className =
+                        "space";
+
+                }
+
+
+                barcodeLines.appendChild(line);
 
             }
 
         }
 
-        barcode.appendChild(bars);
 
-        const text =
+        barcode.appendChild(
+            barcodeLines
+        );
+
+
+        const barcodeText =
             document.createElement("div");
 
-        text.className =
+        barcodeText.className =
             "barcode-number";
 
-        text.textContent =
+        barcodeText.textContent =
             member.builderId;
 
-        barcode.appendChild(text);
+
+        barcode.appendChild(
+            barcodeText
+        );
 
     }
 
@@ -196,7 +242,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const member =
             teamMembers[memberKey];
 
-        if (!member) return;
+
+        if (!member) {
+            return;
+        }
 
 
         /* NAME */
@@ -208,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
             member.name;
 
 
-        /* ROLE */
+        /* DOMAIN */
 
         personRole.textContent =
             `⚡ ${member.role} ⚡`;
@@ -232,18 +281,22 @@ document.addEventListener("DOMContentLoaded", function () {
             member.photo;
 
 
-        /* RESET ZOOM */
+        /* RESET PHOTO */
 
         zoom = 1;
-
-        zoomSlider.value = 1;
-
-        zoomValue.textContent =
-            "1.00×";
 
         positionX = 50;
 
         positionY = 50;
+
+
+        zoomSlider.value =
+            "1";
+
+
+        zoomValue.textContent =
+            "1.00×";
+
 
         updatePhoto();
 
@@ -261,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       MEMBER SELECT
+       TEAM SELECTOR
     ========================================== */
 
     if (memberSelect) {
@@ -281,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       NAME CHANGE
+       NAME INPUT
     ========================================== */
 
     if (nameInput) {
@@ -294,6 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.value
                         .trim()
                         .toUpperCase();
+
 
                 posterName.textContent =
                     name || "BUILDER";
@@ -317,7 +371,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 const file =
                     event.target.files[0];
 
-                if (!file) return;
+
+                if (!file) {
+                    return;
+                }
 
 
                 if (!file.type.startsWith("image/")) {
@@ -327,26 +384,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     return;
-
                 }
 
 
                 const reader =
                     new FileReader();
 
+
                 reader.onload =
-                    function (e) {
+                    function (event) {
 
                         profileImage.src =
-                            e.target.result;
+                            event.target.result;
+
 
                         zoom = 1;
 
+                        positionX = 50;
+
+                        positionY = 50;
+
+
                         zoomSlider.value =
-                            1;
+                            "1";
+
 
                         zoomValue.textContent =
                             "1.00×";
+
 
                         updatePhoto();
 
@@ -372,10 +437,12 @@ document.addEventListener("DOMContentLoaded", function () {
             function () {
 
                 zoom =
-                    parseFloat(this.value);
+                    Number(this.value);
+
 
                 zoomValue.textContent =
                     `${zoom.toFixed(2)}×`;
+
 
                 updatePhoto();
 
@@ -395,16 +462,20 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
+                zoom = 1;
+
                 positionX = 50;
 
                 positionY = 50;
 
-                zoom = 1;
 
-                zoomSlider.value = 1;
+                zoomSlider.value =
+                    "1";
+
 
                 zoomValue.textContent =
                     "1.00×";
+
 
                 updatePhoto();
 
@@ -427,17 +498,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 const poster =
                     document.getElementById("poster");
 
-                if (!poster) return;
+
+                if (!poster) {
+
+                    alert(
+                        "Poster not found."
+                    );
+
+                    return;
+                }
 
 
                 if (typeof html2canvas === "undefined") {
 
                     alert(
-                        "Download library is not loaded. Please refresh the page and try again."
+                        "Download library is not loaded. Please refresh the page."
                     );
 
                     return;
-
                 }
 
 
@@ -449,6 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             {
                                 scale: 2,
                                 useCORS: true,
+                                allowTaint: true,
                                 backgroundColor: null
                             }
                         );
@@ -457,25 +536,41 @@ document.addEventListener("DOMContentLoaded", function () {
                     const link =
                         document.createElement("a");
 
+
                     link.download =
                         "HH-Goa-2026-Builder-ID.png";
 
+
                     link.href =
-                        canvas.toDataURL("image/png");
+                        canvas.toDataURL(
+                            "image/png"
+                        );
+
+
+                    document.body.appendChild(
+                        link
+                    );
+
 
                     link.click();
+
+
+                    document.body.removeChild(
+                        link
+                    );
 
                 }
 
                 catch (error) {
 
                     console.error(
-                        "Poster download error:",
+                        "Download error:",
                         error
                     );
 
+
                     alert(
-                        "Could not download the poster. Please try again."
+                        "Poster download failed. Please try again."
                     );
 
                 }
@@ -487,9 +582,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==========================================
-       INITIAL LOAD
+       INITIAL BUILDER
     ========================================== */
 
     loadMember("monalisa");
 
 });
+
