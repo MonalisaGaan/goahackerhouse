@@ -1,10 +1,11 @@
-
+```html
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -24,6 +25,7 @@
 
     <link rel="stylesheet"
           href="{% static 'frameapp/css/style.css' %}">
+
 </head>
 
 
@@ -56,15 +58,14 @@
         </h2>
 
         <p class="subtitle">
-            Choose a builder, upload a photo and create
-            your HH Goa 2026 Builder ID.
+            Drop a photo. Get your HH Goa 2026 PFP or Builder ID.
             Post it with <strong>#FrameInGoa</strong>.
         </p>
 
 
-        <!-- TEAM MEMBER -->
+        <!-- BUILDER SELECT -->
 
-        <div class="control">
+        <div class="control member-control">
 
             <label for="memberSelect">
                 SELECT BUILDER
@@ -73,15 +74,15 @@
             <select id="memberSelect">
 
                 <option value="monalisa">
-                    Monalisa Gaan — Frontend Developer
+                    MONALISA GAAN — FRONTEND
                 </option>
 
                 <option value="nikhil">
-                    Nikhil Aryan — Blockchain Developer
+                    NIKHIL ARYAN — BLOCKCHAIN
                 </option>
 
                 <option value="depesh">
-                    Depesh Singh — Backend Developer
+                    DEPESH SINGH — BACKEND
                 </option>
 
             </select>
@@ -89,77 +90,78 @@
         </div>
 
 
-        <!-- PHOTO UPLOAD -->
-
-        <label class="upload-card">
-
-            <span class="upload-heading">
-                UPLOAD YOUR PFP PHOTO
-            </span>
-
-            <span class="upload-description">
-                JPG · PNG · WEBP — any crop works
-            </span>
-
-            <span class="upload-action">
-                ＋ CLICK TO UPLOAD PHOTO
-            </span>
-
-            <input
-                type="file"
-                id="photoInput"
-                accept="image/*">
-
-        </label>
+        <div class="generator-controls">
 
 
-        <!-- ZOOM -->
+            <!-- UPLOAD -->
 
-        <div class="control">
+            <label class="upload-card">
 
-            <label for="zoomSlider">
-                ZOOM
-            </label>
+                <span class="upload-heading">
+                    UPLOAD YOUR PFP PHOTO
+                </span>
 
-            <div class="zoom-line">
+                <span class="upload-description">
+                    JPG · PNG · WEBP — any crop works
+                </span>
+
+                <span class="upload-action">
+                    ＋ CLICK TO UPLOAD PHOTO
+                </span>
 
                 <input
-                    type="range"
-                    id="zoomSlider"
-                    min="1"
-                    max="2"
-                    step="0.01"
-                    value="1">
+                    type="file"
+                    id="photoInput"
+                    accept="image/*">
 
-                <span id="zoomValue">
-                    1.00×
-                </span>
+            </label>
+
+
+            <!-- ZOOM -->
+
+            <div class="control">
+
+                <label for="zoomSlider">
+                    ZOOM
+                </label>
+
+                <div class="zoom-line">
+
+                    <input
+                        type="range"
+                        id="zoomSlider"
+                        min="1"
+                        max="2"
+                        step="0.01"
+                        value="1">
+
+                    <span id="zoomValue">
+                        1.00×
+                    </span>
+
+                </div>
 
             </div>
 
-        </div>
+
+            <!-- NAME -->
+
+            <div class="control">
+
+                <label for="nameInput">
+                    YOUR NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="nameInput"
+                    value="MONALISA GAAN"
+                    maxlength="30">
+
+            </div>
 
 
-        <!-- NAME -->
-
-        <div class="control">
-
-            <label for="nameInput">
-                YOUR NAME
-            </label>
-
-            <input
-                type="text"
-                id="nameInput"
-                value="MONALISA GAAN"
-                maxlength="30">
-
-        </div>
-
-
-        <!-- BUTTONS -->
-
-        <div class="button-row">
+            <!-- CENTER -->
 
             <button
                 type="button"
@@ -170,6 +172,8 @@
 
             </button>
 
+
+            <!-- DOWNLOAD -->
 
             <button
                 type="button"
@@ -202,144 +206,93 @@
             id="poster">
 
 
-            <div class="poster-border"></div>
-
-
             <div class="poster-content">
 
 
-                <!-- TOP LEFT -->
+                <!-- TOP BADGE -->
 
-                <div class="goa-stamp">
+                <div class="hh-badge">
 
-                    <strong>
-                        GOA
-                    </strong>
-
-                    <strong>
-                        INDIA
-                    </strong>
+                    HH
 
                     <span>
-                        🌴
-                    </span>
-
-                </div>
-
-
-                <!-- HH STICKER -->
-
-                <div class="hh-sticker">
-
-                    <small>
-                        ✦
-                    </small>
-
-                    <b>
-                        HH
-                    </b>
-
-                    <b>
                         GOA
-                    </b>
-
-                    <b>
-                        2026
-                    </b>
-
-                </div>
-
-
-                <!-- TOP RIGHT -->
-
-                <div class="build-seal">
-
-                    <strong>
-                        BUILD IN GOA
-                    </strong>
-
-                    <span>
-                        🌴
                     </span>
 
-                    <small>
-                        SHIP FROM PARADISE
-                    </small>
+                    2026
 
                 </div>
 
 
-                <!-- TIME -->
+                <!-- DATE -->
 
-                <div class="time-sticker">
+                <div class="date">
+
+                    28 — 31 OCT 2026
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <div class="poster-title">
+
+                    HACKER
+
+                    <span class="goa">
+                        गोवा
+                    </span>
+
+                    HOUSE
+
+                </div>
+
+
+                <div class="location">
+
+                    GOA · INDIA · 28—31 OCT 2026
+
+                </div>
+
+
+                <!-- STUDIO -->
+
+                <div class="studio">
 
                     <strong>
                         2:47 PM
                     </strong>
 
-                    <span>
-                        STUDIO
-                    </span>
+                    STUDIO
 
                 </div>
 
 
-                <!-- ================= TITLE ================= -->
+                <!-- DECORATION -->
 
-                <section class="poster-heading">
+                <div class="palm left">
+                    🌴
+                </div>
 
-                    <p class="poster-date">
-                        28 — 31 OCT 2026
-                    </p>
+                <div class="palm right">
+                    🌴
+                </div>
 
-                    <h2>
+                <div class="build-sticker">
 
-                        HACKER
+                    LET'S<br>
+                    BUILD!
 
-                        <span>
-                            गोवा
-                        </span>
-
-                        HOUSE
-
-                    </h2>
-
-                    <p class="poster-location">
-                        GOA · INDIA · 28—31 OCT 2026
-                    </p>
-
-                    <div class="title-stars">
-                        ✦ ✦ ✦
-                    </div>
-
-                </section>
+                </div>
 
 
-                <!-- ================= PHOTO ================= -->
+                <!-- PHOTO -->
 
-                <section class="photo-area">
+                <div class="photo-area">
 
+                    <div class="photo-ring">
 
-                    <div class="sign-stack">
-
-                        <div class="sign build">
-                            BUILD
-                        </div>
-
-                        <div class="sign ship">
-                            SHIP
-                        </div>
-
-                        <div class="sign repeat">
-                            REPEAT
-                        </div>
-
-                    </div>
-
-
-                    <div class="profile-circle">
-
-                        <div class="profile-inner">
+                        <div class="photo-inner">
 
                             <img
                                 id="profileImage"
@@ -350,140 +303,100 @@
 
                     </div>
 
-
-                    <div class="lets-build">
-
-                        <strong>
-                            LET'S
-                        </strong>
-
-                        <strong>
-                            BUILD!
-                        </strong>
-
-                    </div>
-
-                </section>
+                </div>
 
 
-                <!-- ================= NAME ================= -->
+                <!-- NAME -->
 
-                <section class="identity">
+                <div
+                    class="person-name"
+                    id="personName">
 
+                    MONALISA GAAN
 
-                    <div class="name-banner">
-
-                        <span>
-                            ✦
-                        </span>
-
-                        <strong id="posterName">
-                            MONALISA GAAN
-                        </strong>
-
-                        <span>
-                            ✦
-                        </span>
-
-                    </div>
+                </div>
 
 
-                    <div
-                        class="role-banner"
-                        id="personRole">
+                <!-- ROLE -->
 
-                        ⚡ FRONTEND DEVELOPER ⚡
+                <div
+                    class="role"
+                    id="personRole">
 
-                    </div>
+                    ⚡ FRONTEND DEVELOPER ⚡
 
-                </section>
-
-
-                <!-- ================= INFO GRID ================= -->
-
-                <section class="info-grid">
+                </div>
 
 
-                    <!-- BUILDER CLASS + QR -->
+                <!-- INFORMATION -->
 
-                    <div class="info-column">
+                <div class="info-grid">
 
-                        <h3>
+
+                    <!-- BUILDER CLASS -->
+
+                    <div class="info-box">
+
+                        <div class="info-label">
                             ✦ BUILDER CLASS ✦
-                        </h3>
+                        </div>
 
-
-                        <h4 id="builderClass">
+                        <div
+                            class="info-value"
+                            id="builderClass">
 
                             FRONTEND<br>
                             BUILDER
 
-                        </h4>
+                        </div>
 
 
                         <div class="qr-box">
 
                             <div
-                                id="qrcode"
-                                class="qr-code">
+                                id="qrcode">
                             </div>
 
-                            <strong>
-                                SCAN TO BUILD
-                            </strong>
+                        </div>
 
+                        <div class="info-label">
+                            SCAN TO BUILD
                         </div>
 
                     </div>
 
 
-                    <!-- BEACH BAG -->
+                    <!-- BEACH -->
 
-                    <div class="info-column">
+                    <div class="info-box">
 
-                        <h3>
+                        <div class="info-label">
                             ✦ BEACH BAG ✦
-                        </h3>
+                        </div>
 
 
-                        <div class="bag-item">
+                        <div class="beach-items">
 
-                            <span>
-                                🥥
-                            </span>
+                            <div>
+                                🥥 COCONUT
+                            </div>
 
-                            COCONUT
+                            <div>
+                                &lt;/&gt; VS CODE
+                            </div>
+
+                            <div>
+                                🎧 LO-FI BEATS
+                            </div>
 
                         </div>
 
 
-                        <div class="bag-item">
+                        <div class="sunset-decoration">
 
-                            <span>
-                                &lt;/&gt;
-                            </span>
+                            <div class="sun-circle"></div>
 
-                            VS CODE
-
-                        </div>
-
-
-                        <div class="bag-item">
-
-                            <span>
-                                🎧
-                            </span>
-
-                            LO-FI BEATS
-
-                        </div>
-
-
-                        <div class="sunset">
-
-                            <div class="sun"></div>
-
-                            <div class="waves">
+                            <div class="wave-lines">
                                 ≋ ≋ ≋ ≋
                             </div>
 
@@ -492,101 +405,83 @@
                     </div>
 
 
-                    <!-- BUILDER ID + BARCODE -->
+                    <!-- SHIPPING -->
 
-                    <div class="info-column">
+                    <div class="info-box">
 
-                        <h3>
+                        <div class="info-label">
                             ✦ CURRENTLY SHIPPING ✦
-                        </h3>
+                        </div>
 
-
-                        <h4>
+                        <div class="info-value">
 
                             ID CARD<br>
                             GENERATOR
 
-                        </h4>
+                        </div>
 
 
-                        <p class="builder-label">
+                        <div class="builder-label">
                             BUILDER ID
-                        </p>
+                        </div>
 
 
-                        <strong
+                        <div
                             class="builder-id"
                             id="builderId">
 
                             HH-GOA-240
 
-                        </strong>
+                        </div>
 
 
                         <!-- BARCODE -->
 
                         <div
-                            id="barcode"
-                            class="barcode">
+                            class="barcode"
+                            id="barcode">
 
                         </div>
 
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= ADMIT ================= -->
+                <!-- ADMIT -->
 
-                <section class="admit-section">
+                <div class="admit">
 
-                    <div class="ticket">
+                    ADMIT THREE BUILDERS
 
-                        <span>
-                            🌴
-                        </span>
+                    <small>
 
+                        BUILDER ·
+                        MONALISA GAAN ·
+                        NIKHIL ARYAN ·
+                        DEPESH SINGH
 
-                        <div>
+                    </small>
 
-                            <strong>
-                                ADMIT THREE BUILDERS
-                            </strong>
-
-                            <small>
-
-                                BUILDER ·
-                                MONALISA GAAN ·
-                                NIKHIL ARYAN ·
-                                DEPESH SINGH
-
-                            </small>
-
-                        </div>
+                </div>
 
 
-                        <span>
-                            ★
-                        </span>
+                <!-- HASH -->
 
-                    </div>
+                <div class="hashtag">
 
-                </section>
+                    ★ #FRAMEINGOA ★
+
+                </div>
 
 
-                <!-- ================= FOOTER ================= -->
+                <!-- WAVES -->
 
-                <footer>
+                <div class="waves">
 
-                    <strong>
-                        ★ #FRAMEINGOA ★
-                    </strong>
+                    ≋ ≋ ≋ ≋ ≋ ≋
 
-                    <div>
-                        ≋ ≋ ≋ ≋ ≋ ≋
-                    </div>
-
-                </footer>
+                </div>
 
 
             </div>
@@ -598,21 +493,22 @@
 </div>
 
 
-<!-- ================= LIBRARIES ================= -->
+<!-- QR LIBRARY -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
-<!-- ================= YOUR JS ================= -->
+<!-- DOWNLOAD LIBRARY -->
 
-<script src="{% static 'frameapp/js/script.js' %}">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+<!-- YOUR SCRIPT -->
+
+<script src="{% static 'frameapp/js/script.js' %}"></script>
 
 
 </body>
-</html>
 
+</html>
+```
