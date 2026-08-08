@@ -87,55 +87,30 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =====================================================
        QR CODE
     ===================================================== */
+```javascript
+function generateQR(member) {
 
-    function generateQR(member) {
+    qrContainer.innerHTML = "";
 
-        qrContainer.innerHTML = "";
-
-        if (typeof QRCode === "undefined") {
-
-            console.error(
-                "QRCode library is NOT loaded."
-            );
-
-            qrContainer.innerHTML =
-                '<span style="font-size:8px;color:#e92d63;">QR unavailable</span>';
-
-            return;
-        }
-
-        try {
-
-            new QRCode(qrContainer, {
-
-                text:
-                    "HH Goa 2026 | " +
-                    member.name +
-                    " | " +
-                    member.role +
-                    " | " +
-                    member.id,
-
-                width: 105,
-                height: 105,
-
-                colorDark: "#034432",
-                colorLight: "#ffffff",
-
-                correctLevel: QRCode.CorrectLevel.H
-
-            });
-
-        } catch (error) {
-
-            console.error(
-                "QR generation failed:",
-                error
-            );
-
-        }
-
+    if (typeof QRCode === "undefined") {
+        console.error("QRCode library not loaded.");
+        return;
     }
+
+    new QRCode(qrContainer, {
+        text: member.id,
+
+        width: 100,
+        height: 100,
+
+        colorDark: "#034432",
+        colorLight: "#ffffff",
+
+        correctLevel: QRCode.CorrectLevel.M
+    });
+}
+```
+
 
 
     /* =====================================================
