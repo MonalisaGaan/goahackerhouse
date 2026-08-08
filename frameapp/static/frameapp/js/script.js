@@ -1,705 +1,442 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-    /* =========================================
-       TEAM DATA
-    ========================================= */
+const photoInput = document.getElementById("photoInput");
+const profileImage = document.getElementById("profileImage");
 
-    const teamMembers = {
+const zoomSlider = document.getElementById("zoomSlider");
+const zoomValue = document.getElementById("zoomValue");
 
-        monalisa: {
-            name: "MONALISA GAAN",
-            role: "FRONTEND DEVELOPER",
-            builderClass: "FRONTEND<br>BUILDER",
-            builderId: "HH-GOA-240",
-            photo: "/static/frameapp/images/Profile.jpeg"
-        },
+const nameInput = document.getElementById("nameInput");
+const memberSelect = document.getElementById("memberSelect");
 
-        nikhil: {
-            name: "NIKHIL ARYAN",
-            role: "BLOCKCHAIN DEVELOPER",
-            builderClass: "BLOCKCHAIN<br>BUILDER",
-            builderId: "HH-GOA-241",
-            photo: "/static/frameapp/images/Nikhil.jpeg"
-        },
+const posterName = document.getElementById("posterName");
+const ticketName = document.getElementById("ticketName");
 
-        depesh: {
-            name: "DEPESH SINGH",
-            role: "BACKEND DEVELOPER",
-            builderClass: "BACKEND<br>BUILDER",
-            builderId: "HH-GOA-242",
-            photo: "/static/frameapp/images/Depesh.jpeg"
-        }
+const personRole = document.getElementById("personRole");
+const builderClass = document.getElementById("builderClass");
 
-    };
+const builderId = document.getElementById("builderId");
+const barcodeText = document.getElementById("barcodeText");
+
+const centerPhoto = document.getElementById("centerPhoto");
+const downloadPoster = document.getElementById("downloadPoster");
+
+const qrContainer = document.getElementById("qrcode");
+const barcode = document.getElementById("barcode");
 
 
-    /* =========================================
-       ELEMENTS
-    ========================================= */
+/* =====================================================
+   TEAM DATA
+===================================================== */
 
-    const memberSelect =
-        document.getElementById("memberSelect");
+const members = {
 
-    const photoInput =
-        document.getElementById("photoInput");
+    monalisa: {
+        name: "MONALISA GAAN",
+        role: "⚡ FRONTEND DEVELOPER ⚡",
+        builderClass: "TERMINAL<br>WIZARD",
+        id: "HH-GOA-240"
+    },
 
-    const profileImage =
-        document.getElementById("profileImage");
+    nikhil: {
+        name: "NIKHIL ARYAN",
+        role: "⚡ BLOCKCHAIN DEVELOPER ⚡",
+        builderClass: "BLOCKCHAIN<br>BUILDER",
+        id: "HH-GOA-241"
+    },
 
-    const zoomSlider =
-        document.getElementById("zoomSlider");
+    depesh: {
+        name: "DEPESH SINGH",
+        role: "⚡ BACKEND DEVELOPER ⚡",
+        builderClass: "BACKEND<br>ARCHITECT",
+        id: "HH-GOA-242"
+    }
 
-    const zoomValue =
-        document.getElementById("zoomValue");
-
-    const nameInput =
-        document.getElementById("nameInput");
-
-    const personName =
-        document.getElementById("personName");
-
-    const personRole =
-        document.getElementById("personRole");
-
-    const builderClass =
-        document.getElementById("builderClass");
-
-    const builderId =
-        document.getElementById("builderId");
-
-    const qrCode =
-        document.getElementById("qrcode");
-
-    const barcode =
-        document.getElementById("barcode");
-
-    const centerPhoto =
-        document.getElementById("centerPhoto");
-
-    const downloadPoster =
-        document.getElementById("downloadPoster");
+};
 
 
-    /* =========================================
-       PHOTO ZOOM
-    ========================================= */
+/* =====================================================
+   DEFAULT PHOTO
+===================================================== */
 
-    let zoom = 1;
+const defaultPhoto = profileImage.src;
 
-
-    function applyPhotoZoom() {
-
-        if (!profileImage) {
-            return;
-        }
+let uploadedPhoto = null;
 
 
-        /*
-           DO NOT change the size of .photo-ring.
+/* =====================================================
+   UPDATE POSTER
+===================================================== */
 
-           Only the image itself is scaled.
-        */
+function updatePoster() {
 
-        profileImage.style.transform =
-            `scale(${zoom})`;
+    const selectedMember = memberSelect.value;
 
-        profileImage.style.transformOrigin =
-            "center center";
+    const member = members[selectedMember];
 
+    if (!member) {
+        return;
     }
 
 
-    /* =========================================
-       QR CODE
-    ========================================= */
+    /* NAME */
 
-    function generateQRCode(member) {
+    const customName = nameInput.value.trim();
 
-        if (!qrCode) {
-            return;
-        }
-
-
-        qrCode.innerHTML = "";
+    const finalName =
+        customName !== ""
+            ? customName.toUpperCase()
+            : member.name;
 
 
-        if (typeof QRCode === "undefined") {
+    posterName.textContent = finalName;
 
-            qrCode.textContent = "QR";
-
-            return;
-
-        }
+    ticketName.textContent = finalName;
 
 
-        new QRCode(qrCode, {
+    /* DOMAIN */
 
-            text:
-                `${member.name} | ${member.role} | ${member.builderId}`,
+    personRole.textContent = member.role;
 
-            width: 105,
 
-            height: 105,
+    /* BUILDER CLASS */
 
-            correctLevel:
-                QRCode.CorrectLevel.H
+    builderClass.innerHTML = member.builderClass;
+
+
+    /* BUILDER ID */
+
+    builderId.textContent = member.id;
+
+    barcodeText.textContent = member.id;
+
+
+    /* QR */
+
+    generateQR(member);
+
+
+    /* BARCODE */
+
+    generateBarcode(member.id);
+
+}
+
+
+/* =====================================================
+   QR CODE
+===================================================== */
+
+function generateQR(member) {
+
+    qrContainer.innerHTML = "";
+
+    if (typeof QRCode === "undefined") {
+        console.error("QRCode library not loaded.");
+        return;
+    }
+
+    new QRCode(qrContainer, {
+        text:
+            "HH Goa 2026 | " +
+            member.name +
+            " | " +
+            member.role +
+            " | " +
+            member.id,
+
+        width: 100,
+        height: 100,
+
+        colorDark: "#034432",
+        colorLight: "#ffffff",
+
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+}
+
+
+/* =====================================================
+   BARCODE
+===================================================== */
+
+function generateBarcode(id) {
+
+    if (typeof JsBarcode === "undefined") {
+        console.error("JsBarcode library not loaded.");
+        return;
+    }
+
+    try {
+
+        JsBarcode("#barcode", id, {
+
+            format: "CODE128",
+
+            width: 2,
+
+            height: 48,
+
+            displayValue: false,
+
+            margin: 0,
+
+            background: "#ffffff",
+
+            lineColor: "#111111"
 
         });
 
-    }
+    } catch (error) {
 
-
-    /* =========================================
-       BARCODE
-    ========================================= */
-
-    function generateBarcode(member) {
-
-        if (!barcode) {
-            return;
-        }
-
-
-        barcode.innerHTML = "";
-
-
-        const id =
-            member.builderId;
-
-
-        const digits =
-            id.replace(/\D/g, "");
-
-
-        const lines =
-            document.createElement("div");
-
-
-        lines.className =
-            "barcode-lines";
-
-
-        /*
-           Start and end bars
-        */
-
-        addBar(lines, 3);
-
-
-        for (let i = 0; i < digits.length; i++) {
-
-            const digit =
-                Number(digits[i]);
-
-
-            const repetitions =
-                digit + 3;
-
-
-            for (
-                let j = 0;
-                j < repetitions;
-                j++
-            ) {
-
-                if (j % 2 === 0) {
-
-                    addBar(lines, 3);
-
-                } else {
-
-                    addSpace(lines, 2);
-
-                }
-
-            }
-
-            addSpace(lines, 2);
-
-        }
-
-
-        addBar(lines, 3);
-
-
-        barcode.appendChild(lines);
-
-
-        const number =
-            document.createElement("div");
-
-
-        number.className =
-            "barcode-number";
-
-
-        number.textContent =
-            id;
-
-
-        barcode.appendChild(number);
+        console.error("Barcode error:", error);
 
     }
 
+}
 
-    function addBar(container, width) {
 
-        const element =
-            document.createElement("span");
+/* =====================================================
+   PHOTO UPLOAD
+===================================================== */
 
-        element.className =
-            "bar";
+photoInput.addEventListener("change", function (event) {
 
-        element.style.width =
-            `${width}px`;
+    const file = event.target.files[0];
 
-        container.appendChild(element);
+    if (!file) {
+        return;
+    }
 
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select an image file.");
+
+        return;
     }
 
 
-    function addSpace(container, width) {
+    const reader = new FileReader();
 
-        const element =
-            document.createElement("span");
+    reader.onload = function (e) {
 
-        element.className =
-            "space";
+        uploadedPhoto = e.target.result;
 
-        element.style.width =
-            `${width}px`;
+        profileImage.src = uploadedPhoto;
 
-        container.appendChild(element);
+        profileImage.style.transform = "scale(1)";
 
-    }
+        zoomSlider.value = "1";
 
+        zoomValue.textContent = "1.00×";
 
-    /* =========================================
-       LOAD BUILDER
-    ========================================= */
+    };
 
-    function loadBuilder(builderKey) {
-
-        const member =
-            teamMembers[builderKey];
-
-
-        if (!member) {
-            return;
-        }
-
-
-        /* NAME */
-
-        if (personName) {
-
-            personName.textContent =
-                member.name;
-
-        }
-
-
-        if (nameInput) {
-
-            nameInput.value =
-                member.name;
-
-        }
-
-
-        /* DOMAIN */
-
-        if (personRole) {
-
-            personRole.textContent =
-                `⚡ ${member.role} ⚡`;
-
-        }
-
-
-        /* BUILDER CLASS */
-
-        if (builderClass) {
-
-            builderClass.innerHTML =
-                member.builderClass;
-
-        }
-
-
-        /* BUILDER ID */
-
-        if (builderId) {
-
-            builderId.textContent =
-                member.builderId;
-
-        }
-
-
-        /* PHOTO */
-
-        if (profileImage) {
-
-            profileImage.src =
-                member.photo;
-
-            profileImage.style.transform =
-                "scale(1)";
-
-        }
-
-
-        /* RESET ZOOM */
-
-        zoom = 1;
-
-
-        if (zoomSlider) {
-
-            zoomSlider.value =
-                "1";
-
-        }
-
-
-        if (zoomValue) {
-
-            zoomValue.textContent =
-                "1.00×";
-
-        }
-
-
-        /* QR */
-
-        generateQRCode(member);
-
-
-        /* BARCODE */
-
-        generateBarcode(member);
-
-    }
-
-
-    /* =========================================
-       BUILDER SELECT
-    ========================================= */
-
-    if (memberSelect) {
-
-        memberSelect.addEventListener(
-            "change",
-            function () {
-
-                loadBuilder(
-                    this.value
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       NAME EDIT
-    ========================================= */
-
-    if (nameInput) {
-
-        nameInput.addEventListener(
-            "input",
-            function () {
-
-                const value =
-                    this.value
-                        .trim()
-                        .toUpperCase();
-
-
-                if (personName) {
-
-                    personName.textContent =
-                        value || "BUILDER";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       PHOTO UPLOAD
-    ========================================= */
-
-    if (photoInput) {
-
-        photoInput.addEventListener(
-            "change",
-            function (event) {
-
-                const file =
-                    event.target.files[0];
-
-
-                if (!file) {
-                    return;
-                }
-
-
-                if (!file.type.startsWith("image/")) {
-
-                    alert(
-                        "Please select an image."
-                    );
-
-                    return;
-
-                }
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload =
-                    function (event) {
-
-                        profileImage.src =
-                            event.target.result;
-
-
-                        zoom = 1;
-
-
-                        if (zoomSlider) {
-
-                            zoomSlider.value =
-                                "1";
-
-                        }
-
-
-                        if (zoomValue) {
-
-                            zoomValue.textContent =
-                                "1.00×";
-
-                        }
-
-
-                        applyPhotoZoom();
-
-                    };
-
-
-                reader.readAsDataURL(file);
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       ZOOM SLIDER
-    ========================================= */
-
-    if (zoomSlider) {
-
-        zoomSlider.addEventListener(
-            "input",
-            function () {
-
-                zoom =
-                    Number(this.value);
-
-
-                if (zoomValue) {
-
-                    zoomValue.textContent =
-                        `${zoom.toFixed(2)}×`;
-
-                }
-
-
-                applyPhotoZoom();
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       AUTO CENTRE
-    ========================================= */
-
-    if (centerPhoto) {
-
-        centerPhoto.addEventListener(
-            "click",
-            function () {
-
-                zoom = 1;
-
-
-                if (zoomSlider) {
-
-                    zoomSlider.value =
-                        "1";
-
-                }
-
-
-                if (zoomValue) {
-
-                    zoomValue.textContent =
-                        "1.00×";
-
-                }
-
-
-                applyPhotoZoom();
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       DOWNLOAD POSTER
-    ========================================= */
-
-    if (downloadPoster) {
-
-        downloadPoster.addEventListener(
-            "click",
-            async function () {
-
-                const poster =
-                    document.getElementById("poster");
-
-
-                if (!poster) {
-
-                    alert(
-                        "Poster element not found."
-                    );
-
-                    return;
-
-                }
-
-
-                if (typeof html2canvas === "undefined") {
-
-                    alert(
-                        "Download library is not loaded. Please refresh the page."
-                    );
-
-                    return;
-
-                }
-
-
-                const originalButtonText =
-                    downloadPoster.textContent;
-
-
-                downloadPoster.textContent =
-                    "CREATING POSTER...";
-
-
-                downloadPoster.disabled =
-                    true;
-
-
-                try {
-
-                    const canvas =
-                        await html2canvas(
-                            poster,
-                            {
-                                scale: 2,
-                                useCORS: true,
-                                allowTaint: true,
-                                backgroundColor: null
-                            }
-                        );
-
-
-                    const link =
-                        document.createElement("a");
-
-
-                    link.download =
-                        "HH-Goa-2026-Builder-ID.png";
-
-
-                    link.href =
-                        canvas.toDataURL(
-                            "image/png"
-                        );
-
-
-                    document.body.appendChild(
-                        link
-                    );
-
-
-                    link.click();
-
-
-                    document.body.removeChild(
-                        link
-                    );
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Poster download error:",
-                        error
-                    );
-
-
-                    alert(
-                        "Poster download failed. Please try again."
-                    );
-
-                }
-
-
-                finally {
-
-                    downloadPoster.textContent =
-                        originalButtonText;
-
-                    downloadPoster.disabled =
-                        false;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       INITIAL LOAD
-    ========================================= */
-
-    loadBuilder("monalisa");
+    reader.readAsDataURL(file);
 
 });
 
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+zoomSlider.addEventListener("input", function () {
+
+    const zoom = parseFloat(this.value);
+
+    profileImage.style.transform =
+        "scale(" + zoom + ")";
+
+    zoomValue.textContent =
+        zoom.toFixed(2) + "×";
+
+});
+
+
+/* =====================================================
+   NAME CHANGE
+===================================================== */
+
+nameInput.addEventListener("input", function () {
+
+    const selectedMember = memberSelect.value;
+
+    const member = members[selectedMember];
+
+    if (!member) {
+        return;
+    }
+
+    const name =
+        nameInput.value.trim() !== ""
+            ? nameInput.value.toUpperCase()
+            : member.name;
+
+    posterName.textContent = name;
+
+    ticketName.textContent = name;
+
+});
+
+
+/* =====================================================
+   MEMBER CHANGE
+   THIS IS THE IMPORTANT PART
+===================================================== */
+
+memberSelect.addEventListener("change", function () {
+
+    const member = members[this.value];
+
+    if (!member) {
+        return;
+    }
+
+
+    /* Change name */
+
+    nameInput.value = member.name;
+
+    posterName.textContent = member.name;
+
+    ticketName.textContent = member.name;
+
+
+    /* Change domain */
+
+    personRole.textContent = member.role;
+
+
+    /* Change builder class */
+
+    builderClass.innerHTML =
+        member.builderClass;
+
+
+    /* Change ID */
+
+    builderId.textContent = member.id;
+
+    barcodeText.textContent = member.id;
+
+
+    /* Regenerate QR */
+
+    generateQR(member);
+
+
+    /* Regenerate barcode */
+
+    generateBarcode(member.id);
+
+});
+
+
+/* =====================================================
+   AUTO CENTRE
+===================================================== */
+
+centerPhoto.addEventListener("click", function () {
+
+    profileImage.style.objectPosition = "center center";
+
+    profileImage.style.transform = "scale(1)";
+
+    zoomSlider.value = "1";
+
+    zoomValue.textContent = "1.00×";
+
+});
+
+
+/* =====================================================
+   DOWNLOAD POSTER
+===================================================== */
+
+downloadPoster.addEventListener("click", async function () {
+
+    const poster = document.getElementById("poster");
+
+    if (!poster) {
+        alert("Poster not found.");
+        return;
+    }
+
+
+    if (typeof html2canvas === "undefined") {
+
+        alert(
+            "Download library is not loaded. Please refresh the page and try again."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const canvas = await html2canvas(poster, {
+
+            scale: 2,
+
+            useCORS: true,
+
+            backgroundColor: "#fff2cc",
+
+            logging: false
+
+        });
+
+
+        const link =
+            document.createElement("a");
+
+        const selectedMember =
+            memberSelect.value;
+
+        const member =
+            members[selectedMember];
+
+
+        link.download =
+            member.name
+                .toLowerCase()
+                .replace(/\s+/g, "-") +
+            "-hh-goa-2026.png";
+
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+
+        link.click();
+
+    } catch (error) {
+
+        console.error(
+            "Poster download failed:",
+            error
+        );
+
+        alert(
+            "Could not download the poster. Please try again."
+        );
+
+    }
+
+});
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+updatePoster();
+
+});
