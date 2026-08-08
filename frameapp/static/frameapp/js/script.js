@@ -338,3 +338,21 @@ async function downloadPoster() {
     }
 
 }
+document.addEventListener("DOMContentLoaded", function () {
+
+    const qrContainer = document.getElementById("qrcode");
+
+    if (qrContainer && typeof QRCode !== "undefined") {
+
+        qrContainer.innerHTML = "";
+
+        new QRCode(qrContainer, {
+            text: "https://goahackerhouse-ecq8.vercel.app/",
+            width: 108,
+            height: 108,
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+    }
+
+});
