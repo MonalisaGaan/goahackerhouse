@@ -1,155 +1,246 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>HH Goa 2026 | Frame in Goa</title>
+    <title>Frame in Goa | HH Goa 2026</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link
-        rel="stylesheet"
-        href="{% static 'frameapp/css/style.css' %}"
-    >
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- Barcode Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
+    <!-- Download Card Library -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 </head>
 
 <body>
 
+
 <!-- =====================================================
-     HEADER
+     NAVBAR
 ===================================================== -->
 
-<header class="top-info">
+<header class="navbar">
 
-    <div class="small">
-        GOA · INDIA · 28—31 OCT 2026
+    <div class="brand">
+
+        <span class="brand-mark">
+            HH
+        </span>
+
+        <div>
+
+            <strong>
+                FRAME
+            </strong>
+
+            <small>
+                IN GOA
+            </small>
+
+        </div>
+
     </div>
 
-    <h1>
-        HH GOA 2026
-    </h1>
+
+    <div class="nav-date">
+        GOA, INDIA · 28—31 OCT 2026
+    </div>
 
 </header>
 
 
+
 <!-- =====================================================
-     CONTROLS
+     MAIN CONTENT
 ===================================================== -->
 
-<section class="controls">
-
-    <div class="generator-title">
-        ✦ FRAME IN <b>गोवा</b>
-    </div>
-
-    <p class="generator-text">
-        Drop a photo. Get your HH Goa 2026 PFP or Builder ID.
-        Post it with <strong>#FrameInGoa</strong>.
-    </p>
+<main class="page">
 
 
-    <div class="generator-controls">
+    <!-- =================================================
+         LEFT EDITOR
+    ================================================== -->
 
-        <!-- PHOTO -->
+    <section class="editor">
 
-        <label class="upload-card">
 
-            <span class="upload-heading">
-                UPLOAD YOUR PFP PHOTO
+        <div class="section-heading">
+
+            <span class="eyebrow">
+                CURRENTLY SHIPPING
             </span>
 
-            <span class="upload-description">
-                JPG · PNG · HEIC · WEBP
-            </span>
 
-            <span class="upload-action">
-                ＋ CLICK TO UPLOAD PHOTO
-            </span>
+            <h1>
+                ID CARD
+                <br>
+                <span>GENERATOR</span>
+            </h1>
 
-            <input
-                type="file"
-                id="photoInput"
-                accept="image/*"
+
+            <p>
+                Build your Hacker Goa House identity card.
+                Add your photo, details and generate your card.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PHOTO UPLOAD
+        ================================================== -->
+
+        <div class="form-section">
+
+            <label
+                class="field-title"
+                for="photoInput"
             >
-
-        </label>
-
-
-        <!-- ZOOM -->
-
-        <div class="control">
-
-            <label for="zoomSlider">
-                ZOOM
+                PROFILE PHOTO
             </label>
 
-            <div class="zoom-line">
+
+            <div class="upload-box">
 
                 <input
-                    type="range"
-                    id="zoomSlider"
-                    min="1"
-                    max="2"
-                    step="0.01"
-                    value="1"
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
                 >
 
-                <span id="zoomValue">
-                    1.00×
-                </span>
+
+                <div class="upload-content">
+
+                    <div class="upload-icon">
+                        +
+                    </div>
+
+
+                    <strong>
+                        Upload photo
+                    </strong>
+
+
+                    <span>
+                        JPG / PNG · Recommended square image
+                    </span>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- NAME -->
 
-        <div class="control">
+        <!-- =================================================
+             NAME
+        ================================================== -->
 
-            <label for="nameInput">
-                YOUR NAME
+        <div class="form-section">
+
+            <label
+                for="nameInput"
+                class="field-title"
+            >
+                NAME
             </label>
+
 
             <input
                 type="text"
                 id="nameInput"
-                maxlength="30"
+                placeholder="Enter your name"
                 value="MONALISA GAAN"
             >
 
         </div>
 
 
-        <!-- BUILDER -->
 
-        <div class="control">
+        <!-- =================================================
+             STACK / ROLE
+        ================================================== -->
 
-            <label for="memberSelect">
-                BUILDER
+        <div class="form-section">
+
+            <label
+                for="roleInput"
+                class="field-title"
+            >
+                STACK / ROLE
             </label>
 
-            <select id="memberSelect">
 
-                <option value="monalisa">
-                    Monalisa Gaan — Frontend
+            <input
+                type="text"
+                id="roleInput"
+                placeholder="e.g. FRONTEND DEVELOPER"
+                value="FRONTEND DEVELOPER"
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             BUILDER CLASS
+        ================================================== -->
+
+        <div class="form-section">
+
+            <label
+                for="classInput"
+                class="field-title"
+            >
+                BUILDER CLASS
+            </label>
+
+
+            <select id="classInput">
+
+                <option
+                    value="TERMINAL WIZARD"
+                    selected
+                >
+                    TERMINAL WIZARD
                 </option>
 
-                <option value="nikhil">
-                    Nikhil Aryan — Blockchain
+
+                <option value="CODE PIRATE">
+                    CODE PIRATE
                 </option>
 
-                <option value="depesh">
-                    Depesh Singh — Backend
+
+                <option value="PIXEL ALCHEMIST">
+                    PIXEL ALCHEMIST
+                </option>
+
+
+                <option value="STACK SAMURAI">
+                    STACK SAMURAI
+                </option>
+
+
+                <option value="DEBUG DETECTIVE">
+                    DEBUG DETECTIVE
                 </option>
 
             </select>
@@ -157,374 +248,420 @@
         </div>
 
 
-        <!-- CENTRE -->
 
-        <button
-            type="button"
-            id="centerPhoto"
-            class="green-button"
+        <!-- =================================================
+             BUILDER ID
+        ================================================== -->
+
+        <div class="form-section">
+
+            <label
+                for="idInput"
+                class="field-title"
+            >
+                BUILDER ID
+            </label>
+
+
+            <input
+                type="text"
+                id="idInput"
+                placeholder="HH-GOA-240"
+                value="HH-GOA-240"
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             BUTTONS
+        ================================================== -->
+
+        <div class="button-row">
+
+
+            <button
+                class="btn secondary"
+                id="randomBtn"
+                type="button"
+            >
+                ⚡ RANDOMIZE
+            </button>
+
+
+            <button
+                class="btn primary"
+                id="downloadBtn"
+                type="button"
+            >
+                DOWNLOAD CARD
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RIGHT SIDE — PREVIEW
+    ================================================== -->
+
+    <section class="preview-section">
+
+
+        <div class="preview-label">
+            LIVE PREVIEW
+        </div>
+
+
+
+        <!-- =================================================
+             ID CARD
+        ================================================== -->
+
+        <div
+            id="idCard"
+            class="id-card"
         >
-            ✦ AUTO-CENTRE PHOTO
-        </button>
-
-    </div>
 
 
-    <!-- DOWNLOAD -->
+            <!-- =============================================
+                 CARD HEADER
+            ============================================== -->
 
-    <button
-        type="button"
-        id="downloadPoster"
-        class="pink-button"
-    >
-        DOWNLOAD POSTER
-    </button>
+            <div class="card-header">
 
 
-    <p class="privacy">
-        Everything renders on your device.
-        No login, no upload to a server.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     POSTER
-===================================================== -->
-
-<div class="poster-wrapper">
-
-    <div class="poster" id="poster">
-
-        <div class="poster-border"></div>
-
-
-        <!-- GOA STAMP -->
-
-        <div class="goa-stamp">
-
-            <strong>GOA</strong>
-            <strong>INDIA</strong>
-
-            <span>🌴</span>
-
-        </div>
-
-
-        <!-- HH STICKER -->
-
-        <div class="hh-sticker">
-
-            <small>✦</small>
-            <b>HH</b>
-            <b>GOA</b>
-            <b>2026</b>
-
-        </div>
-
-
-        <!-- BUILD SEAL -->
-
-        <div class="build-seal">
-
-            <strong>BUILD IN GOA</strong>
-
-            <span>🌴</span>
-
-            <small>
-                SHIP FROM PARADISE
-            </small>
-
-        </div>
-
-
-        <!-- TIME -->
-
-        <div class="time-sticker">
-
-            <strong>2:47 PM</strong>
-
-            <span>
-                STUDIO
-            </span>
-
-        </div>
-
-
-        <!-- TITLE -->
-
-        <section class="poster-heading">
-
-            <p class="poster-date">
-                28 — 31 OCT 2026
-            </p>
-
-            <h2>
-                HACKER
-                <span>गोवा</span>
-                HOUSE
-            </h2>
-
-            <p class="poster-location">
-                GOA · INDIA · 28—31 OCT 2026
-            </p>
-
-            <div class="title-stars">
-                ✦ ✦ ✦
-            </div>
-
-        </section>
-
-
-        <!-- PHOTO -->
-
-        <section class="photo-area">
-
-            <div class="sign-stack">
-
-                <div class="sign build">
-                    BUILD
+                <div class="small-pill">
+                    BUILDER PASS
                 </div>
 
-                <div class="sign ship">
-                    SHIP
+
+                <div class="hh-logo">
+
+                    HACKER
+                    <span>गोवा</span>
+                    HOUSE
+
                 </div>
 
-                <div class="sign repeat">
-                    REPEAT
+
+                <div class="studio">
+
+                    2:47PM
+
+                    <br>
+
+                    <span>
+                        STUDIO
+                    </span>
+
+                </div>
+
+
+                <div class="location">
+
+                    GOA, INDIA · 28—31 OCT 2026
+
                 </div>
 
             </div>
 
 
-            <!-- PROFILE -->
 
-            <div class="profile-circle">
+            <!-- =============================================
+                 PROFILE AREA
+            ============================================== -->
 
-                <div class="profile-inner">
+            <div class="profile-area">
+
+
+                <!-- PHOTO -->
+
+                <div class="photo-frame">
+
 
                     <img
                         id="profileImage"
-                        src="{% static 'frameapp/images/Profile.jpeg' %}"
-                        alt="Builder photo"
+                        src=""
+                        alt="Monalisa Gaan profile photo"
                     >
+
+
+                    <div
+                        id="photoPlaceholder"
+                        class="photo-placeholder"
+                    >
+
+                        <span>
+                            YOUR
+                        </span>
+
+                        <strong>
+                            PHOTO
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- INFORMATION -->
+
+                <div class="information">
+
+
+                    <!-- NAME -->
+
+                    <div class="info-box">
+
+                        <span>
+                            NAME
+                        </span>
+
+
+                        <strong id="cardName">
+                            MONALISA GAAN
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- ROLE -->
+
+                    <div class="info-box">
+
+                        <span>
+                            STACK / ROLE
+                        </span>
+
+
+                        <strong
+                            id="cardRole"
+                            class="pink-text"
+                        >
+                            FRONTEND DEVELOPER
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- BUILDER CLASS -->
+
+                    <div class="info-box">
+
+                        <span>
+                            BUILDER CLASS
+                        </span>
+
+
+                        <strong
+                            id="cardClass"
+                            class="pink-text"
+                        >
+                            TERMINAL WIZARD
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- BUILDER ID -->
+
+                    <div class="info-box">
+
+                        <span>
+                            BUILDER ID
+                        </span>
+
+
+                        <strong id="cardId">
+                            #HH-GOA-240
+                        </strong>
+
+                    </div>
+
 
                 </div>
 
             </div>
 
 
-            <div class="lets-build">
 
-                <strong>LET'S</strong>
-                <strong>BUILD!</strong>
+            <!-- =============================================
+                 SHIPPING STRIP
+            ============================================== -->
 
-            </div>
-
-        </section>
+            <div class="shipping">
 
 
-        <!-- IDENTITY -->
+                <span>
+                    ✦ CURRENTLY SHIPPING ✦
+                </span>
 
-        <section class="identity">
 
-            <div class="name-banner">
-
-                <span>✦</span>
-
-                <strong id="posterName">
-                    MONALISA GAAN
+                <strong>
+                    ID CARD GENERATOR
                 </strong>
 
-                <span>✦</span>
 
             </div>
 
-            <div
-                class="role"
-                id="personRole"
-            >
-                ⚡ FRONTEND DEVELOPER ⚡
+
+
+            <!-- =============================================
+                 BEACH BAG
+            ============================================== -->
+
+            <div class="beach-title">
+
+                ✦ BEACH BAG ✦
+
             </div>
 
-        </section>
+
+            <div class="tags">
 
 
-        <!-- INFORMATION -->
+                <button type="button">
+                    🌊 BEACH VIBES
+                </button>
 
-        <section class="info-grid">
+
+                <button type="button">
+                    ⚡ SIDE PROJECT
+                </button>
 
 
-            <!-- BUILDER CLASS -->
+                <button type="button">
+                    🎯 SHIP IT
+                </button>
 
-            <div class="info-column">
 
-                <h3>
-                    ✦ BUILDER CLASS ✦
-                </h3>
+            </div>
 
-                <h4 id="builderClass">
-                    TERMINAL<br>
-                    WIZARD
-                </h4>
+
+
+            <!-- =============================================
+                 BOTTOM AREA
+            ============================================== -->
+
+            <div class="bottom-area">
 
 
                 <!-- QR CODE -->
 
-                <div class="qr-box">
+                <div class="qr-section">
 
-                    <div id="qrcode"></div>
 
-                    <strong>
-                        SCAN TO BUILD
+                    <div
+                        id="qrcode"
+                        class="qr-code"
+                    ></div>
+
+
+                    <small>
+                        SCAN TO VERIFY
+                    </small>
+
+
+                    <strong id="qrId">
+                        #HH-GOA-240
                     </strong>
 
-                </div>
-
-            </div>
-
-
-            <!-- BEACH BAG -->
-
-            <div class="info-column">
-
-                <h3>
-                    ✦ BEACH BAG ✦
-                </h3>
-
-                <div class="bag-item">
-                    <span>🥥</span>
-                    COCONUT
-                </div>
-
-                <div class="bag-item">
-                    <span>&lt;/&gt;</span>
-                    VS CODE
-                </div>
-
-                <div class="bag-item">
-                    <span>🎧</span>
-                    LO-FI BEATS
-                </div>
-
-                <div class="sunset">
-
-                    <div class="sun"></div>
-
-                    <div class="waves">
-                        ≋ ≋ ≋ ≋
-                    </div>
 
                 </div>
 
-            </div>
 
 
-            <!-- SHIPPING -->
+                <!-- ADMIT ONE -->
 
-            <div class="info-column">
-
-                <h3>
-                    ✦ CURRENTLY SHIPPING ✦
-                </h3>
-
-                <h4>
-                    ID CARD<br>
-                    GENERATOR
-                </h4>
+                <div class="admit-section">
 
 
-                <p class="builder-label">
-                    BUILDER ID
-                </p>
-
-                <strong
-                    class="builder-id"
-                    id="builderId"
-                >
-                    HH-GOA-240
-                </strong>
+                    <span>
+                        ADMIT ONE BUILDER
+                    </span>
 
 
-                <!-- BARCODE -->
+                    <strong id="admitName">
+                        MONALISA GAAN
+                    </strong>
 
-                <div class="barcode-box">
 
                     <svg
                         id="barcode"
                         class="barcode"
                     ></svg>
 
-                    <small id="barcodeText">
-                        HH-GOA-240
-                    </small>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ADMIT -->
-
-        <section class="admit-section">
-
-            <div class="ticket">
-
-                <span>🌴</span>
-
-                <div>
-
-                    <strong>
-                        ADMIT ONE BUILDER
-                    </strong>
 
                     <small>
-                        BUILDER ·
-                        <span id="ticketName">
-                            MONALISA GAAN
-                        </span>
+                        BUILD · SHIP · REPEAT
                     </small>
+
 
                 </div>
 
-                <span>★</span>
 
             </div>
 
-        </section>
 
 
-        <!-- FOOTER -->
+            <!-- =============================================
+                 CARD FOOTER
+            ============================================== -->
 
-        <footer>
+            <div class="card-footer">
 
-            <strong>
-                ★ #FRAMEINGOA ★
-            </strong>
+                <span>
+                    #FRAMEINGOA
+                </span>
 
-            <div>
-                ≋ ≋ ≋ ≋ ≋ ≋
             </div>
 
-        </footer>
 
-    </div>
+        </div>
 
-</div>
+    </section>
+
+</main>
+
 
 
 <!-- =====================================================
-     JAVASCRIPT LIBRARIES
-     IMPORTANT: ONLY ONE OF EACH
+     WEBSITE FOOTER
 ===================================================== -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="{% static 'frameapp/js/script.js' %}"></script>
+<footer>
+
+
+    <span>
+        HH GOA 2026
+    </span>
+
+
+    <span>
+        BUILD · SHIP · REPEAT
+    </span>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
 
 </body>
 </html>

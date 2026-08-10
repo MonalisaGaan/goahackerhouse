@@ -1,488 +1,387 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+    // =====================================================
+    // ELEMENTS
+    // =====================================================
 
     const photoInput = document.getElementById("photoInput");
-    const profileImage = document.getElementById("profileImage");
 
-    const zoomSlider = document.getElementById("zoomSlider");
-    const zoomValue = document.getElementById("zoomValue");
+    const profileImage = document.getElementById("profileImage");
+    const photoPlaceholder = document.getElementById("photoPlaceholder");
 
     const nameInput = document.getElementById("nameInput");
-    const memberSelect = document.getElementById("memberSelect");
+    const roleInput = document.getElementById("roleInput");
+    const classInput = document.getElementById("classInput");
+    const idInput = document.getElementById("idInput");
 
-    const posterName = document.getElementById("posterName");
-    const ticketName = document.getElementById("ticketName");
+    const cardName = document.getElementById("cardName");
+    const cardRole = document.getElementById("cardRole");
+    const cardClass = document.getElementById("cardClass");
+    const cardId = document.getElementById("cardId");
 
-    const personRole = document.getElementById("personRole");
-    const builderClass = document.getElementById("builderClass");
+    const admitName = document.getElementById("admitName");
+    const qrId = document.getElementById("qrId");
 
-    const builderId = document.getElementById("builderId");
-    const barcodeText = document.getElementById("barcodeText");
+    const randomBtn = document.getElementById("randomBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
 
-    const centerPhoto = document.getElementById("centerPhoto");
-    const downloadPoster = document.getElementById("downloadPoster");
-
-    const qrContainer = document.getElementById("qrcode");
-    const barcodeElement = document.getElementById("barcode");
+    const qrCodeContainer = document.getElementById("qrcode");
+    const barcode = document.getElementById("barcode");
+    const idCard = document.getElementById("idCard");
 
 
-    /* =====================================================
-       CHECK REQUIRED ELEMENTS
-    ===================================================== */
+    // =====================================================
+    // UPDATE CARD INFORMATION
+    // =====================================================
 
-    if (!photoInput ||
-        !profileImage ||
-        !zoomSlider ||
-        !nameInput ||
-        !memberSelect ||
-        !posterName ||
-        !ticketName ||
-        !personRole ||
-        !builderClass ||
-        !builderId ||
-        !barcodeText ||
-        !centerPhoto ||
-        !downloadPoster ||
-        !qrContainer ||
-        !barcodeElement) {
+    function updateCard() {
 
-        console.error("Some poster elements are missing.");
-        return;
+        const name =
+            nameInput.value.trim() || "MONALISA GAAN";
+
+        const role =
+            roleInput.value.trim() || "FRONTEND DEVELOPER";
+
+        const builderClass =
+            classInput.value || "TERMINAL WIZARD";
+
+        const builderId =
+            idInput.value.trim() || "HH-GOA-240";
+
+
+        // Name
+        cardName.textContent = name.toUpperCase();
+        admitName.textContent = name.toUpperCase();
+
+
+        // Role
+        cardRole.textContent = role.toUpperCase();
+
+
+        // Builder class
+        cardClass.textContent = builderClass.toUpperCase();
+
+
+        // Builder ID
+        const formattedId =
+            "#" + builderId.replace(/^#/, "").toUpperCase();
+
+        cardId.textContent = formattedId;
+        qrId.textContent = formattedId;
+
+
+        // Generate QR
+        generateQRCode(builderId);
+
+
+        // Generate barcode
+        generateBarcode(builderId);
     }
 
 
-    /* =====================================================
-       TEAM DATA
-    ===================================================== */
+    // =====================================================
+    // PHOTO UPLOAD
+    // =====================================================
 
-    const members = {
+    photoInput.addEventListener("change", (event) => {
 
-        monalisa: {
-            name: "MONALISA GAAN",
-            role: "⚡ FRONTEND DEVELOPER ⚡",
-            builderClass: "TERMINAL<br>WIZARD",
-            id: "HH-GOA-240"
-        },
+        const file = event.target.files[0];
 
-        nikhil: {
-            name: "NIKHIL ARYAN",
-            role: "⚡ BLOCKCHAIN DEVELOPER ⚡",
-            builderClass: "BLOCKCHAIN<br>BUILDER",
-            id: "HH-GOA-241"
-        },
-
-        depesh: {
-            name: "DEPESH SINGH",
-            role: "⚡ BACKEND DEVELOPER ⚡",
-            builderClass: "BACKEND<br>ARCHITECT",
-            id: "HH-GOA-242"
-        }
-
-    };
-
-
-    /* =====================================================
-       QR CODE
-    ===================================================== */
-```javascript
-function generateQR(member) {
-
-    qrContainer.innerHTML = "";
-
-    if (typeof QRCode === "undefined") {
-        console.error("QRCode library not loaded.");
-        return;
-    }
-
-    new QRCode(qrContainer, {
-        text: member.id,
-
-        width: 100,
-        height: 100,
-
-        colorDark: "#034432",
-        colorLight: "#ffffff",
-
-        correctLevel: QRCode.CorrectLevel.M
-    });
-}
-```
-
-
-
-    /* =====================================================
-       BARCODE
-    ===================================================== */
-
-    function generateBarcode(id) {
-
-    if (!barcode) {
-        console.error("Barcode element not found.");
-        return;
-    }
-
-    if (typeof JsBarcode === "undefined") {
-        console.error("JsBarcode library not loaded.");
-        return;
-    }
-
-    try {
-
-        barcode.innerHTML = "";
-
-        JsBarcode(barcode, id, {
-            format: "CODE128",
-            width: 2,
-            height: 48,
-            displayValue: false,
-            margin: 4,
-            background: "#ffffff",
-            lineColor: "#111111"
-        });
-
-    } catch (error) {
-
-        console.error("Barcode error:", error);
-
-    }
-}
-
-    /* =====================================================
-       UPDATE POSTER
-    ===================================================== */
-
-    function updatePoster() {
-
-        const selectedMember =
-            memberSelect.value;
-
-        const member =
-            members[selectedMember];
-
-        if (!member) {
+        if (!file) {
             return;
         }
 
 
-        /* NAME */
+        // Make sure the selected file is an image
+        if (!file.type.startsWith("image/")) {
 
-        const customName =
-            nameInput.value.trim();
+            alert("Please select a valid image file.");
 
-        const finalName =
-            customName !== ""
-                ? customName.toUpperCase()
-                : member.name;
+            photoInput.value = "";
 
-        posterName.textContent =
-            finalName;
-
-        ticketName.textContent =
-            finalName;
+            return;
+        }
 
 
-        /* ROLE */
-
-        personRole.textContent =
-            member.role;
+        const reader = new FileReader();
 
 
-        /* CLASS */
+        reader.onload = (event) => {
 
-        builderClass.innerHTML =
-            member.builderClass;
+            profileImage.src = event.target.result;
 
+            profileImage.style.display = "block";
 
-        /* ID */
-
-        builderId.textContent =
-            member.id;
-
-        barcodeText.textContent =
-            member.id;
+            photoPlaceholder.style.display = "none";
+        };
 
 
-        /* QR */
+        reader.readAsDataURL(file);
+    });
 
-        generateQR(member);
+
+    // =====================================================
+    // QR CODE
+    // =====================================================
+
+    function generateQRCode(builderId) {
+
+        if (!qrCodeContainer) {
+            return;
+        }
 
 
-        /* BARCODE */
+        // Clear previous QR code
+        qrCodeContainer.innerHTML = "";
 
-        generateBarcode(member.id);
 
+        const cleanId =
+            builderId
+                .replace(/^#/, "")
+                .toUpperCase();
+
+
+        new QRCode(qrCodeContainer, {
+
+            text: `HH GOA 2026 - ${cleanId}`,
+
+            width: 75,
+
+            height: 75,
+
+            colorDark: "#073f2d",
+
+            colorLight: "#ffffff",
+
+            correctLevel: QRCode.CorrectLevel.H
+        });
     }
 
 
-    /* =====================================================
-       PHOTO UPLOAD
-    ===================================================== */
+    // =====================================================
+    // BARCODE
+    // =====================================================
 
-    photoInput.addEventListener(
-        "change",
-        function (event) {
+    function generateBarcode(builderId) {
 
-            const file =
-                event.target.files[0];
-
-            if (!file) {
-                return;
-            }
-
-            if (!file.type.startsWith("image/")) {
-
-                alert(
-                    "Please select an image file."
-                );
-
-                return;
-            }
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function (event) {
-
-                    profileImage.src =
-                        event.target.result;
-
-                    profileImage.style.transform =
-                        "scale(1)";
-
-                    zoomSlider.value =
-                        "1";
-
-                    zoomValue.textContent =
-                        "1.00×";
-
-                };
-
-            reader.readAsDataURL(file);
-
+        if (!barcode) {
+            return;
         }
-    );
 
 
-    /* =====================================================
-       ZOOM
-    ===================================================== */
+        let cleanId =
+            builderId
+                .replace(/[^a-zA-Z0-9]/g, "")
+                .toUpperCase();
 
-    zoomSlider.addEventListener(
-        "input",
-        function () {
 
-            const zoom =
-                parseFloat(this.value);
-
-            profileImage.style.transform =
-                "scale(" + zoom + ")";
-
-            zoomValue.textContent =
-                zoom.toFixed(2) + "×";
-
+        if (!cleanId) {
+            cleanId = "HHGOA240";
         }
-    );
 
 
-    /* =====================================================
-       NAME CHANGE
-    ===================================================== */
+        JsBarcode(barcode, cleanId, {
 
-    nameInput.addEventListener(
-        "input",
-        function () {
+            format: "CODE128",
 
-            const member =
-                members[memberSelect.value];
+            width: 1.5,
 
-            if (!member) {
-                return;
-            }
+            height: 32,
 
-            const name =
-                nameInput.value.trim() !== ""
-                    ? nameInput.value.toUpperCase()
-                    : member.name;
+            displayValue: false,
 
-            posterName.textContent =
-                name;
+            lineColor: "#073f2d",
 
-            ticketName.textContent =
-                name;
+            background: "transparent",
 
+            margin: 0
+        });
+    }
+
+
+    // =====================================================
+    // INPUT EVENTS
+    // =====================================================
+
+    nameInput.addEventListener("input", updateCard);
+
+    roleInput.addEventListener("input", updateCard);
+
+    classInput.addEventListener("change", updateCard);
+
+    idInput.addEventListener("input", updateCard);
+
+
+    // =====================================================
+    // RANDOMIZE
+    // =====================================================
+
+    randomBtn.addEventListener("click", () => {
+
+        const names = [
+            "MONALISA GAAN",
+            "NIKHIL ARYAN",
+            "ARJUN MEHTA",
+            "RIYA SHARMA",
+            "ADITYA DAS",
+            "ANANYA PATNAIK",
+            "ROHAN SINGH",
+            "KAVYA NAYAK"
+        ];
+
+
+        const roles = [
+            "FRONTEND DEVELOPER",
+            "FULL STACK DEVELOPER",
+            "AI ENGINEER",
+            "BACKEND DEVELOPER",
+            "UI/UX DESIGNER",
+            "DEVOPS ENGINEER",
+            "BLOCKCHAIN DEVELOPER"
+        ];
+
+
+        const builderClasses = [
+            "TERMINAL WIZARD",
+            "CODE PIRATE",
+            "PIXEL ALCHEMIST",
+            "STACK SAMURAI",
+            "DEBUG DETECTIVE"
+        ];
+
+
+        // Random name
+        const randomName =
+            names[Math.floor(Math.random() * names.length)];
+
+
+        // Random role
+        const randomRole =
+            roles[Math.floor(Math.random() * roles.length)];
+
+
+        // Random class
+        const randomClass =
+            builderClasses[
+                Math.floor(Math.random() * builderClasses.length)
+            ];
+
+
+        // Random ID
+        const randomNumber =
+            Math.floor(100 + Math.random() * 900);
+
+
+        const randomId =
+            `HH-GOA-${randomNumber}`;
+
+
+        // Put values into inputs
+        nameInput.value = randomName;
+
+        roleInput.value = randomRole;
+
+        classInput.value = randomClass;
+
+        idInput.value = randomId;
+
+
+        // Update card
+        updateCard();
+    });
+
+
+    // =====================================================
+    // DOWNLOAD CARD
+    // =====================================================
+
+    downloadBtn.addEventListener("click", async () => {
+
+        if (!idCard) {
+            return;
         }
-    );
 
 
-    /* =====================================================
-       MEMBER CHANGE
-    ===================================================== */
+        const originalText =
+            downloadBtn.textContent;
 
-    memberSelect.addEventListener(
-        "change",
-        function () {
 
-            const member =
-                members[this.value];
+        downloadBtn.textContent =
+            "GENERATING...";
 
-            if (!member) {
-                return;
-            }
 
-            nameInput.value =
-                member.name;
+        downloadBtn.disabled = true;
 
-            posterName.textContent =
-                member.name;
 
-            ticketName.textContent =
-                member.name;
+        try {
 
-            personRole.textContent =
-                member.role;
+            const canvas =
+                await html2canvas(idCard, {
 
-            builderClass.innerHTML =
-                member.builderClass;
+                    scale: 3,
 
-            builderId.textContent =
-                member.id;
+                    useCORS: true,
 
-            barcodeText.textContent =
-                member.id;
+                    allowTaint: true,
 
-            generateQR(member);
+                    backgroundColor: null,
 
-            generateBarcode(member.id);
+                    logging: false
+                });
 
+
+            // Create download link
+            const link =
+                document.createElement("a");
+
+
+            // Get name for filename
+            const fileName =
+                (
+                    nameInput.value.trim() ||
+                    "MONALISA_GAAN"
+                )
+                    .replace(/[^a-zA-Z0-9]+/g, "_")
+                    .toUpperCase();
+
+
+            link.download =
+                `${fileName}_HH_GOA_2026.png`;
+
+
+            link.href =
+                canvas.toDataURL("image/png");
+
+
+            // Start download
+            link.click();
+
+        } catch (error) {
+
+            console.error(
+                "Card download error:",
+                error
+            );
+
+
+            alert(
+                "Unable to download the card. Please try again."
+            );
+
+        } finally {
+
+            downloadBtn.textContent =
+                originalText;
+
+            downloadBtn.disabled = false;
         }
-    );
+    });
 
 
-    /* =====================================================
-       AUTO CENTRE
-    ===================================================== */
+    // =====================================================
+    // INITIAL CARD SETUP
+    // =====================================================
 
-    centerPhoto.addEventListener(
-        "click",
-        function () {
-
-            profileImage.style.objectPosition =
-                "center center";
-
-            profileImage.style.transform =
-                "scale(1)";
-
-            zoomSlider.value =
-                "1";
-
-            zoomValue.textContent =
-                "1.00×";
-
-        }
-    );
-
-
-    /* =====================================================
-       DOWNLOAD POSTER
-    ===================================================== */
-
-    downloadPoster.addEventListener(
-        "click",
-        async function () {
-
-            const poster =
-                document.getElementById("poster");
-
-            if (!poster) {
-
-                alert(
-                    "Poster not found."
-                );
-
-                return;
-            }
-
-            if (typeof html2canvas === "undefined") {
-
-                alert(
-                    "Download library is not loaded. Please refresh the page."
-                );
-
-                return;
-            }
-
-            try {
-
-                const canvas =
-                    await html2canvas(
-                        poster,
-                        {
-
-                            scale: 2,
-
-                            useCORS: true,
-
-                            allowTaint: false,
-
-                            backgroundColor:
-                                "#fff7e8",
-
-                            logging: false
-
-                        }
-                    );
-
-
-                const link =
-                    document.createElement("a");
-
-
-                const member =
-                    members[
-                        memberSelect.value
-                    ];
-
-
-                link.download =
-                    member.name
-                        .toLowerCase()
-                        .replace(/\s+/g, "-") +
-                    "-hh-goa-2026.png";
-
-
-                link.href =
-                    canvas.toDataURL(
-                        "image/png"
-                    );
-
-
-                link.click();
-
-            } catch (error) {
-
-                console.error(
-                    "Poster download failed:",
-                    error
-                );
-
-                alert(
-                    "Could not download the poster. Please try again."
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       INITIAL LOAD
-    ===================================================== */
-
-    updatePoster();
+    updateCard();
 
 });
