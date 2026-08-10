@@ -1,253 +1,763 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap');
-
-
-/* =========================================
-   VARIABLES
-========================================= */
-
-:root {
-
-    --green: #075c43;
-    --dark-green: #034432;
-    --cream: #fff2cc;
-    --pink: #ed1b5b;
-    --yellow: #ffc928;
-    --red: #f52b4f;
-    --black: #17362c;
-
-}
+/* =====================================================
+   FRAME IN GOA — HH GOA 2026
+   ID CARD GENERATOR
+===================================================== */
 
 
-/* =========================================
+/* =====================================================
    RESET
-========================================= */
+===================================================== */
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-
-/* =========================================
-   BODY
-========================================= */
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-
-    margin: 0;
-
     min-height: 100vh;
+    overflow-x: hidden;
 
-    padding: 35px 15px;
+    font-family: "Outfit", sans-serif;
+
+    color: #073f2d;
 
     background:
         radial-gradient(
-            circle at 15% 20%,
-            rgba(255, 201, 40, .16),
-            transparent 20%
-        ),
-        radial-gradient(
-            circle at 85% 70%,
-            rgba(237, 27, 91, .14),
+            circle at 10% 20%,
+            rgba(247, 210, 62, 0.15),
             transparent 25%
         ),
-        linear-gradient(
-            135deg,
-            #034432,
-            #087052 50%,
-            #023d2d
-        );
-
-    font-family: "DM Sans", sans-serif;
-
-    color: var(--black);
-
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(239, 61, 112, 0.10),
+            transparent 25%
+        ),
+        #f4ecd3;
 }
 
 
-/* =========================================
-   PAGE
-========================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-.page {
+:root {
+    --green-dark: #073f2d;
+    --green: #0c513b;
+    --green-light: #176348;
 
+    --cream: #f8f0d8;
+    --cream-dark: #e8ddbd;
+
+    --yellow: #f7d23e;
+    --pink: #ef3d70;
+
+    --black: #111111;
+
+    --border: rgba(7, 63, 45, 0.25);
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
     width: 100%;
+    height: 82px;
 
-    max-width: 1180px;
+    padding: 0 6vw;
 
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(248, 240, 216, 0.86);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px dashed rgba(7, 63, 45, 0.3);
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* Brand */
 
-.top-info {
-
-    color: white;
-
-    text-align: center;
-
-    margin-bottom: 25px;
-
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
+.brand-mark {
+    width: 42px;
+    height: 42px;
 
-.top-info .small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-size: 14px;
+    border-radius: 50%;
 
-    letter-spacing: 4px;
-
-    font-weight: 800;
-
-}
-
-
-.top-info h1 {
-
-    margin: 8px 0;
-
-    font-family: "Bebas Neue", sans-serif;
-
-    font-size: 54px;
-
-    letter-spacing: 2px;
+    background: var(--green-dark);
 
     color: var(--yellow);
 
+    border: 3px solid var(--yellow);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.brand strong {
+    display: block;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+}
+
+.brand small {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
 }
 
 
-/* =========================================
-   CONTROLS
-========================================= */
+/* Date */
 
-.controls {
+.nav-date {
+    font-family: "DM Mono", monospace;
 
-    background: rgba(255, 242, 204, .97);
+    font-size: 11px;
 
-    border-radius: 22px;
+    font-weight: 500;
 
-    padding: 25px;
-
-    margin-bottom: 35px;
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, .3);
-
+    letter-spacing: 1px;
 }
 
 
-.controls h2 {
+/* =====================================================
+   MAIN PAGE
+===================================================== */
 
-    margin-top: 0;
+.page {
+    width: 100%;
+    max-width: 1400px;
 
-    font-family: "Bebas Neue", sans-serif;
+    margin: 0 auto;
 
-    font-size: 34px;
+    padding: 70px 6vw;
 
-    color: var(--green);
+    display: grid;
 
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 80px;
+
+    align-items: start;
 }
 
 
-.controls h2 span {
+/* =====================================================
+   EDITOR
+===================================================== */
+
+.editor {
+    padding-top: 15px;
+}
+
+
+/* Heading */
+
+.eyebrow {
+    display: inline-block;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
 
     color: var(--pink);
-
 }
 
 
-.subtitle {
+.section-heading h1 {
+    margin: 15px 0 20px;
 
-    margin-bottom: 20px;
+    font-size: clamp(45px, 5vw, 75px);
 
+    line-height: 0.88;
+
+    letter-spacing: -4px;
+
+    font-weight: 800;
+}
+
+.section-heading h1 span {
+    color: var(--pink);
+}
+
+.section-heading p {
+    max-width: 460px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #426055;
 }
 
 
-/* =========================================
-   GENERATOR CONTROLS
-========================================= */
+/* =====================================================
+   FORM SECTIONS
+===================================================== */
 
-.generator-controls {
+.form-section {
+    margin-top: 30px;
+}
+
+.field-title {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+input,
+select {
+    width: 100%;
+    height: 52px;
+
+    padding: 0 16px;
+
+    border: 2px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    color: var(--green-dark);
+
+    font-family: "Outfit", sans-serif;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--green);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(12, 81, 59, 0.08);
+}
+
+input::placeholder {
+    color: #789086;
+}
+
+
+/* =====================================================
+   PHOTO UPLOAD
+===================================================== */
+
+.upload-box {
+    height: 130px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border: 2px dashed var(--green);
+
+    border-radius: 15px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(12, 81, 59, 0.03),
+            rgba(12, 81, 59, 0.03) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+
+    transition: 0.25s ease;
+}
+
+.upload-box:hover {
+    background-color: rgba(12, 81, 59, 0.04);
+
+    border-color: var(--pink);
+}
+
+
+/* Hidden file input */
+
+.upload-box input[type="file"] {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+/* Upload content */
+
+.upload-content {
+    width: 100%;
+    height: 100%;
 
     display: flex;
 
-    flex-wrap: wrap;
-
-    gap: 15px;
+    flex-direction: column;
 
     align-items: center;
+    justify-content: center;
 
+    gap: 5px;
+}
+
+.upload-icon {
+    width: 32px;
+    height: 32px;
+
+    margin-bottom: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--green-dark);
+
+    color: var(--yellow);
+
+    font-size: 24px;
+}
+
+.upload-content strong {
+    font-size: 14px;
+}
+
+.upload-content span {
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    color: #657b71;
 }
 
 
-.control {
+/* =====================================================
+   BUTTONS
+===================================================== */
 
+.button-row {
+    width: 100%;
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.btn {
+    height: 54px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    transition: 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.7;
+
+    transform: none;
+}
+
+
+/* Random button */
+
+.btn.secondary {
+    background: var(--green-dark);
+
+    color: #ffffff;
+}
+
+
+/* Download button */
+
+.btn.primary {
+    flex: 1;
+
+    background: var(--pink);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(239, 61, 112, 0.22);
+}
+
+.btn.primary:hover {
+    box-shadow:
+        0 12px 28px rgba(239, 61, 112, 0.3);
+}
+
+
+/* =====================================================
+   PREVIEW SECTION
+===================================================== */
+
+.preview-section {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    min-width: 0;
+}
+
+.preview-label {
+    width: min(100%, 500px);
+
+    margin-bottom: 15px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.65;
+}
+
+
+/* =====================================================
+   ID CARD
+===================================================== */
+
+.id-card {
+    width: 500px;
+
+    max-width: 100%;
+
+    aspect-ratio: 0.68;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 16px;
+
+    border: 8px solid var(--green-dark);
+
+    border-radius: 28px;
+
+    color: var(--green-dark);
+
+    background-color: var(--cream);
+
+    background-image:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(239, 61, 112, 0.07) 1px,
+            transparent 1px
+        );
+
+    background-size: 17px 17px;
+
+    box-shadow:
+        0 30px 70px rgba(7, 63, 45, 0.20),
+        0 5px 0 var(--yellow);
+}
+
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.card-header {
+    position: relative;
+
+    text-align: center;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px dashed rgba(7, 63, 45, 0.35);
+}
+
+
+/* Builder pass */
+
+.small-pill {
+    width: 85px;
+    height: 13px;
+
+    margin: 0 auto 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--cream-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 5px;
+
+    letter-spacing: 1px;
+}
+
+
+/* Logo */
+
+.hh-logo {
+    font-size: 26px;
+
+    font-weight: 800;
+
+    line-height: 0.95;
+
+    letter-spacing: -1px;
+}
+
+.hh-logo span {
+    padding: 0 3px;
+
+    border-radius: 4px;
+
+    background: var(--green-dark);
+
+    color: var(--yellow);
+
+    font-size: 17px;
+}
+
+
+/* Studio */
+
+.studio {
+    position: absolute;
+
+    top: 4px;
+    right: 0;
+
+    color: var(--pink);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    line-height: 1.1;
+
+    text-align: right;
+}
+
+.studio span {
+    font-size: 5px;
+}
+
+
+/* Location */
+
+.location {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 3px 8px;
+
+    border-radius: 4px;
+
+    background: var(--green-dark);
+
+    color: var(--yellow);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   PROFILE AREA
+===================================================== */
+
+.profile-area {
+    display: grid;
+
+    grid-template-columns: 43% 1fr;
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo-frame {
+    width: 100%;
+
+    aspect-ratio: 0.82;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 4px solid var(--green-dark);
+
+    border-radius: 17px;
+
+    background: #d5dfce;
+
+    box-shadow:
+        inset 0 0 0 3px var(--yellow);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    object-fit: cover;
+}
+
+
+/* Placeholder */
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--green-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+.photo-placeholder strong {
+    margin-top: 3px;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   INFORMATION BOXES
+===================================================== */
+
+.information {
     display: flex;
 
     flex-direction: column;
 
     gap: 7px;
 
+    min-width: 0;
 }
 
+.info-box {
+    min-height: 55px;
 
-.control label {
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    color: var(--green);
-
-    letter-spacing: 1px;
-
-}
-
-
-/* =========================================
-   MEMBER SELECT
-========================================= */
-
-.member-control {
-
-    margin-bottom: 18px;
-
-}
-
-
-.member-control select {
-
-    width: 100%;
-
-    max-width: 430px;
-
-    padding: 12px 14px;
-
-    border: 2px solid var(--green);
-
-    border-radius: 10px;
-
-    background: white;
-
-    color: var(--black);
-
-    font-weight: 700;
-
-    font-family: inherit;
-
-}
-
-
-/* =========================================
-   UPLOAD
-========================================= */
-
-.upload-card {
+    padding: 7px 11px;
 
     display: flex;
 
@@ -255,1158 +765,529 @@ body {
 
     justify-content: center;
 
-    align-items: center;
+    min-width: 0;
 
-    min-width: 260px;
+    border: 2px solid rgba(7, 63, 45, 0.25);
 
-    flex: 1;
+    border-radius: 11px;
 
-    padding: 18px;
-
-    border: 3px dashed var(--green);
-
-    border-radius: 15px;
-
-    text-align: center;
-
-    cursor: pointer;
-
-    background: #fff9e7;
-
+    background: rgba(255, 255, 255, 0.28);
 }
 
+.info-box span {
+    margin-bottom: 4px;
 
-.upload-card:hover {
+    font-family: "DM Mono", monospace;
 
-    background: #fff4c8;
+    font-size: 5px;
 
+    letter-spacing: 1px;
+
+    opacity: 0.7;
 }
 
+.info-box strong {
+    min-width: 0;
 
-.upload-heading {
+    overflow-wrap: anywhere;
 
-    display: block;
+    font-family: "DM Mono", monospace;
 
+    font-size: 11px;
+
+    line-height: 1.15;
+}
+
+.pink-text {
     color: var(--pink);
-
-    font-size: 17px;
-
-    font-weight: 900;
-
 }
 
 
-.upload-description {
+/* =====================================================
+   SHIPPING STRIP
+===================================================== */
 
-    margin-top: 5px;
-
-    font-size: 12px;
-
-}
-
-
-.upload-action {
-
+.shipping {
     margin-top: 10px;
 
-    color: var(--green);
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-}
-
-
-input[type="file"] {
-
-    display: none;
-
-}
-
-
-/* =========================================
-   INPUTS
-========================================= */
-
-.name-box input,
-.control input[type="text"] {
-
-    border: 2px solid var(--green);
-
-    border-radius: 10px;
-
-    padding: 10px;
-
-    font-weight: 700;
-
-}
-
-
-.zoom-line {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-}
-
-
-input[type="range"] {
-
-    accent-color: var(--pink);
-
-}
-
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-.green-button,
-.pink-button {
-
-    border: none;
-
-    border-radius: 30px;
-
-    padding: 13px 20px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    font-family: inherit;
-
-    transition: .2s;
-
-}
-
-
-.green-button {
-
-    background: var(--green);
-
-    color: white;
-
-}
-
-
-.pink-button {
-
-    background: var(--pink);
-
-    color: white;
-
-}
-
-
-.green-button:hover,
-.pink-button:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, .2);
-
-}
-
-
-.privacy {
-
-    margin-bottom: 0;
-
-    font-size: 13px;
-
-    opacity: .7;
-
-}
-
-
-/* =========================================
-   POSTER WRAPPER
-========================================= */
-
-.poster-wrapper {
-
-    display: flex;
-
-    justify-content: center;
-
-    width: 100%;
-
-}
-
-
-/* =========================================
-   POSTER
-========================================= */
-
-.poster {
-
-    position: relative;
-
-    width: 700px;
-
-    max-width: 100%;
-
-    min-height: 1000px;
-
-    overflow: hidden;
-
-    padding: 32px;
-
-    border: 7px solid var(--dark-green);
-
-    border-radius: 24px;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,255,255,.55),
-            transparent 30%
-        ),
-        var(--cream);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.45),
-        inset 0 0 0 4px var(--yellow);
-
-}
-
-
-/* =========================================
-   POSTER INNER BORDER
-========================================= */
-
-.poster::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 13px;
-
-    border: 3px solid var(--yellow);
-
-    border-radius: 17px;
-
-    pointer-events: none;
-
-}
-
-
-.poster-content {
-
-    position: relative;
-
-    z-index: 3;
-
-}
-
-
-/* =========================================
-   HH BADGE
-========================================= */
-
-.hh-badge {
-
-    width: 95px;
-
-    height: 125px;
-
-    margin: -32px auto 12px;
-
-    padding-top: 18px;
-
-    background: var(--pink);
-
-    color: var(--yellow);
+    padding: 9px;
 
     text-align: center;
-
-    font-family: "Bebas Neue", sans-serif;
-
-    font-size: 25px;
-
-    line-height: 1.05;
-
-    border-radius: 0 0 18px 18px;
-
-    box-shadow:
-        0 7px 0 #a80d3d;
-
-}
-
-
-.hh-badge span {
-
-    display: block;
-
-    font-size: 17px;
-
-}
-
-
-/* =========================================
-   DATE
-========================================= */
-
-.date {
-
-    text-align: center;
-
-    color: var(--pink);
-
-    font-weight: 900;
-
-    letter-spacing: 3px;
-
-    font-size: 19px;
-
-}
-
-
-/* =========================================
-   TITLE
-========================================= */
-
-.poster-title {
-
-    text-align: center;
-
-    margin: 8px 0 2px;
-
-    font-family: "Anton", sans-serif;
-
-    font-size: clamp(38px, 7vw, 66px);
-
-    line-height: .95;
-
-    color: var(--dark-green);
-
-    text-transform: uppercase;
-
-}
-
-
-.poster-title .goa {
-
-    color: var(--pink);
-
-    font-family: "Bebas Neue", sans-serif;
-
-}
-
-
-.location {
-
-    text-align: center;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    color: var(--green);
-
-    margin-bottom: 15px;
-
-}
-
-
-/* =========================================
-   STUDIO
-========================================= */
-
-.studio {
-
-    position: absolute;
-
-    right: 35px;
-
-    top: 70px;
-
-    width: 155px;
-
-    min-height: 85px;
-
-    padding: 12px 14px;
-
-    background: var(--green);
-
-    color: var(--yellow);
 
     border: 3px solid var(--yellow);
 
     border-radius: 12px;
 
-    font-weight: 900;
+    background: var(--green-dark);
 
-    text-align: center;
-
-    transform: rotate(3deg);
-
-    box-shadow:
-        4px 4px 0 var(--pink);
-
-    z-index: 20;
-
+    color: var(--cream);
 }
 
-
-.studio strong {
-
+.shipping span {
     display: block;
 
-    font-size: 21px;
-
-    line-height: 1.2;
-
-}
-
-
-/* =========================================
-   DECORATIONS
-========================================= */
-
-.palm {
-
-    position: absolute;
-
-    font-size: 80px;
-
-    z-index: 1;
-
-}
-
-
-.palm.left {
-
-    left: -15px;
-
-    top: 300px;
-
-    transform: rotate(-10deg);
-
-}
-
-
-.palm.right {
-
-    right: -15px;
-
-    top: 330px;
-
-    transform: rotate(10deg);
-
-}
-
-
-.build-sticker {
-
-    position: absolute;
-
-    right: 20px;
-
-    top: 410px;
-
-    padding: 12px 18px;
-
-    background: var(--yellow);
-
-    border: 3px solid var(--green);
-
-    font-weight: 900;
-
-    transform: rotate(7deg);
-
-    z-index: 4;
-
-}
-
-
-/* =========================================
-   PHOTO
-========================================= */
-
-.photo-area {
-
-    position: relative;
-
-    z-index: 4;
-
-    display: flex;
-
-    justify-content: center;
-
-    margin-top: 30px;
-
-}
-
-
-/*
-   IMPORTANT:
-   The outer circle stays exactly 315px.
-*/
-
-.photo-ring {
-
-    width: 315px;
-
-    height: 315px;
-
-    flex: 0 0 315px;
-
-    padding: 10px;
-
-    border-radius: 50%;
-
-    background:
-        repeating-conic-gradient(
-            var(--pink) 0deg 18deg,
-            var(--yellow) 18deg 36deg,
-            var(--green) 36deg 54deg
-        );
-
-    box-shadow:
-        0 8px 0 var(--green);
-
-}
-
-
-.photo-inner {
-
-    width: 100%;
-
-    height: 100%;
-
-    overflow: hidden;
-
-    border: 8px solid var(--cream);
-
-    border-radius: 50%;
-
-    background: #ef234d;
-
-}
-
-
-.photo-inner img {
-
-    display: block;
-
-    width: 100%;
-
-    height: 100%;
-
-    max-width: none;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    transform-origin: center center;
-
-    transition: transform .15s ease;
-
-}
-
-
-/* =========================================
-   NAME
-========================================= */
-
-.person-name {
-
-    width: 82%;
-
-    margin: 22px auto 10px;
-
-    padding: 13px 10px;
-
-    background: var(--green);
-
-    color: white;
-
-    border: 4px solid var(--yellow);
-
-    border-radius: 35px;
-
-    text-align: center;
-
-    font-size: 25px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-}
-
-
-/* =========================================
-   ROLE
-========================================= */
-
-.role {
-
-    width: fit-content;
-
-    max-width: 95%;
-
-    margin: auto;
-
-    padding: 9px 25px;
-
-    background: var(--pink);
-
-    color: white;
-
-    border: 3px solid var(--yellow);
-
-    border-radius: 30px;
-
-    text-align: center;
-
-    font-weight: 900;
-
-    font-size: 18px;
-
-}
-
-
-/* =========================================
-   INFORMATION GRID
-========================================= */
-
-.info-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr 1fr;
-
-    gap: 15px;
-
-    margin-top: 28px;
-
-    padding-top: 20px;
-
-    border-top: 2px dashed #c99f60;
-
-}
-
-
-.info-box {
-
-    min-height: 180px;
-
-    text-align: center;
-
-}
-
-
-.info-box:not(:last-child) {
-
-    border-right:
-        2px dashed #d8b67b;
-
-}
-
-
-.info-label {
-
-    margin-bottom: 9px;
-
-    color: var(--green);
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-}
-
-
-.info-value {
-
-    color: var(--pink);
-
-    font-size: 18px;
-
-    font-weight: 900;
-
-    line-height: 1.25;
-
-}
-
-
-/* =========================================
-   QR CODE
-========================================= */
-
-.qr-box {
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    width: 120px;
-
-    height: 120px;
-
-    margin: 10px auto;
-
-    padding: 5px;
-
-    background: white;
-
-    border: 5px solid var(--green);
-
-}
-
-
-#qrcode {
-
-    width: 105px;
-
-    height: 105px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-#qrcode img {
-
-    display: block;
-
-    width: 105px;
-
-    height: 105px;
-
-}
-
-
-/* =========================================
-   BEACH
-========================================= */
-
-.beach-items {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-    color: var(--green);
-
-    font-size: 14px;
-
-    font-weight: 900;
-
-}
-
-
-.sunset-decoration {
-
-    margin-top: 18px;
-
-}
-
-
-.sun-circle {
-
-    width: 28px;
-
-    height: 28px;
-
-    margin: auto;
-
-    border-radius: 50%;
-
-    background: var(--yellow);
-
-}
-
-
-.wave-lines {
-
-    margin-top: 5px;
-
-    color: var(--green);
-
-    font-size: 22px;
-
-}
-
-
-/* =========================================
-   BUILDER ID
-========================================= */
-
-.builder-label {
-
-    margin-top: 15px;
-
-    margin-bottom: 4px;
-
-    color: var(--green);
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-}
-
-
-.builder-id {
-
-    display: block;
-
-    color: var(--pink);
-
-    font-size: 17px;
-
-    font-weight: 900;
-
-}
-
-
-/* =========================================
-   BARCODE
-========================================= */
-
-.barcode {
-
-    width: 170px;
-
-    height: 68px;
-
-    margin: 12px auto 0;
-
-    padding: 5px;
-
-    background: white;
-
-    border: 2px solid var(--green);
-
-    overflow: hidden;
-
-}
-
-
-.barcode-lines {
-
-    display: flex;
-
-    width: 100%;
-
-    height: 42px;
-
-    align-items: stretch;
-
-}
-
-
-.barcode-lines .bar {
-
-    display: block;
-
-    width: 3px;
-
-    background: #111;
-
-}
-
-
-.barcode-lines .space {
-
-    display: block;
-
-    width: 2px;
-
-    background: white;
-
-}
-
-
-.barcode-number {
-
-    margin-top: 3px;
-
-    color: #111;
-
-    font-family: monospace;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    text-align: center;
-
-}
-
-
-/* =========================================
-   ADMIT
-========================================= */
-
-.admit {
-
-    width: 75%;
-
-    margin: 22px auto 8px;
-
-    padding: 12px;
-
-    background: var(--dark-green);
+    margin-bottom: 3px;
 
     color: var(--yellow);
 
-    border: 3px solid var(--pink);
+    font-family: "DM Mono", monospace;
 
-    text-align: center;
-
-    font-family: "Bebas Neue", sans-serif;
+    font-size: 5px;
 
     letter-spacing: 2px;
+}
 
-    font-size: 25px;
+.shipping strong {
+    font-family: "DM Mono", monospace;
 
-    transform: rotate(-1deg);
+    font-size: 12px;
 
+    letter-spacing: 1px;
 }
 
 
-.admit small {
+/* =====================================================
+   BEACH BAG
+===================================================== */
 
-    display: block;
+.beach-title {
+    margin-top: 10px;
+    margin-bottom: 7px;
 
-    margin-top: 3px;
+    text-align: center;
 
-    color: white;
+    font-family: "DM Mono", monospace;
 
-    font-family: "DM Sans", sans-serif;
+    font-size: 6px;
 
-    font-size: 11px;
+    letter-spacing: 2px;
+}
 
-    line-height: 1.4;
+.tags {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 7px;
+}
+
+.tags button {
+    height: 37px;
+
+    border: 2px solid var(--pink);
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--green-dark);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 6px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.tags button:hover {
+    background: var(--pink);
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   BOTTOM AREA
+===================================================== */
+
+.bottom-area {
+    display: grid;
+
+    grid-template-columns: 28% 1fr;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    align-items: stretch;
+}
+
+
+/* =====================================================
+   QR SECTION
+===================================================== */
+
+.qr-section {
+    padding: 7px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba(7, 63, 45, 0.25);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.qr-code {
+    width: 75px;
+    height: 75px;
+
+    padding: 4px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+}
+
+.qr-code img {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block !important;
+}
+
+.qr-section small {
+    margin-top: 4px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 4px;
+}
+
+.qr-section strong {
+    margin-top: 2px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 6px;
+}
+
+
+/* =====================================================
+   ADMIT SECTION
+===================================================== */
+
+.admit-section {
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba(7, 63, 45, 0.25);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.admit-section > span {
+    font-family: "DM Mono", monospace;
+
+    font-size: 5px;
 
     letter-spacing: 1px;
 
+    opacity: 0.65;
+}
+
+.admit-section > strong {
+    margin: 5px 0;
+
+    text-align: center;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 15px;
+
+    line-height: 1.1;
 }
 
 
-/* =========================================
-   HASHTAG
-========================================= */
+/* Barcode */
 
-.hashtag {
+.barcode {
+    width: 90%;
 
-    width: 70%;
+    height: 34px;
 
-    margin: auto;
+    display: block;
+}
 
-    padding: 10px;
+.admit-section small {
+    margin-top: 2px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 5px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   CARD FOOTER
+===================================================== */
+
+.card-footer {
+    height: 34px;
+
+    margin:
+        auto -16px -16px -16px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
 
     background: var(--pink);
 
-    color: white;
+    color: #ffffff;
 
-    text-align: center;
+    font-family: "DM Mono", monospace;
 
-    font-weight: 900;
+    font-size: 14px;
 
-    font-size: 20px;
+    font-weight: 600;
 
-    transform: rotate(-1deg);
-
+    letter-spacing: 2px;
 }
 
 
-/* =========================================
-   WAVES
-========================================= */
+/* Decorative footer shapes */
 
-.waves {
+.card-footer::before,
+.card-footer::after {
+    content: "";
 
-    margin-top: 15px;
+    position: absolute;
 
-    color: var(--green);
+    top: 0;
 
-    text-align: center;
+    width: 30px;
 
-    font-size: 28px;
+    height: 100%;
 
-    letter-spacing: 4px;
+    background: var(--green-dark);
+}
 
+.card-footer::before {
+    left: -15px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        60% 50%,
+        100% 100%,
+        0 100%
+    );
+}
+
+.card-footer::after {
+    right: -15px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        40% 50%
+    );
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* =====================================================
+   WEBSITE FOOTER
+===================================================== */
 
-@media (max-width: 700px) {
+footer {
+    width: 100%;
+    max-width: 1400px;
 
-    body {
+    margin: 0 auto;
 
-        padding: 10px;
+    padding: 25px 6vw;
 
-    }
+    display: flex;
 
+    align-items: center;
+    justify-content: space-between;
 
-    .top-info h1 {
+    border-top: 1px dashed rgba(7, 63, 45, 0.3);
 
-        font-size: 45px;
+    font-family: "DM Mono", monospace;
 
-    }
+    font-size: 9px;
 
-
-    .poster {
-
-        padding: 25px 18px;
-
-        border-width: 5px;
-
-    }
+    letter-spacing: 1px;
+}
 
 
-    /*
-       Smaller photo ONLY on small screens.
-       Desktop remains 315px.
-    */
+/* =====================================================
+   RESPONSIVE — TABLET
+===================================================== */
 
-    .photo-ring {
+@media (max-width: 1000px) {
 
-        width: 270px;
-
-        height: 270px;
-
-        flex-basis: 270px;
-
-    }
-
-
-    .info-grid {
-
+    .page {
         grid-template-columns: 1fr;
 
+        gap: 60px;
     }
 
+    .editor {
+        width: 100%;
+        max-width: 600px;
+
+        margin: 0 auto;
+    }
+
+    .preview-section {
+        order: -1;
+    }
+
+    .preview-label {
+        max-width: 500px;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE — MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 65px;
+
+        padding: 0 20px;
+    }
+
+    .nav-date {
+        display: none;
+    }
+
+    .page {
+        padding: 40px 20px;
+
+        gap: 45px;
+    }
+
+    .section-heading h1 {
+        font-size: 50px;
+
+        letter-spacing: -3px;
+    }
+
+    .section-heading p {
+        font-size: 14px;
+    }
+
+    .id-card {
+        width: 100%;
+
+        padding: 12px;
+
+        border-width: 6px;
+
+        border-radius: 22px;
+    }
+
+    .card-footer {
+        margin:
+            auto -12px -12px -12px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .page {
+        padding: 30px 14px;
+    }
+
+    .section-heading h1 {
+        font-size: 42px;
+    }
+
+    .id-card {
+        padding: 9px;
+
+        border-width: 5px;
+    }
+
+    .card-footer {
+        margin:
+            auto -9px -9px -9px;
+    }
+
+    .profile-area {
+        gap: 7px;
+    }
 
     .info-box {
+        padding: 5px 7px;
 
-        border-right: none !important;
-
-        border-bottom:
-            2px dashed #d8b67b;
-
-        padding-bottom: 20px;
-
+        min-height: 50px;
     }
 
-
-    .studio {
-
-        position: relative;
-
-        top: auto;
-
-        right: auto;
-
-        width: fit-content;
-
-        margin: 10px auto;
-
+    .info-box strong {
+        font-size: 9px;
     }
 
-
-    .build-sticker,
-    .palm {
-
-        display: none;
-
+    .hh-logo {
+        font-size: 21px;
     }
 
-
-    .person-name {
-
-        width: 95%;
-
-        font-size: 20px;
-
+    .location {
+        font-size: 5px;
     }
 
-
-    .role {
-
-        font-size: 14px;
-
-        padding: 8px 15px;
-
+    .tags {
+        gap: 4px;
     }
 
-
-    .admit {
-
-        width: 95%;
-
+    .tags button {
+        font-size: 5px;
     }
 
-
-    .hashtag {
-
-        width: 90%;
-
+    .qr-code {
+        width: 60px;
+        height: 60px;
     }
-
 }
-
-
-@media (max-width: 430px) {
-
-    .photo-ring {
-
-        width: 240px;
-
-        height: 240px;
-
-        flex-basis: 240px;
-
-    }
-
-
-    .poster-title {
-
-        font-size: 42px;
-
-    }
-
-
-    .top-info .small {
-
-        font-size: 10px;
-
-        letter-spacing: 2px;
-
-    }
-
-}
-
